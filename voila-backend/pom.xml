@@ -103,8 +103,8 @@
 				<version>${liquibase-maven-plugin.version}</version>
 				<configuration>
 					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
-					<changeLogFile>src/main/resources/db/db.changelog-master.xml</changeLogFile>
-					<diffChangeLogFile>src/main/resources/db/changelog/${timestamp}_changelog.xml</diffChangeLogFile>
+					<changeLogFile>src/main/resources/master.xml</changeLogFile>
+					<diffChangeLogFile>src/main/resources/changelog/${timestamp}_changelog.xml</diffChangeLogFile>
 					<logging>debug</logging>
 				</configuration>
 
