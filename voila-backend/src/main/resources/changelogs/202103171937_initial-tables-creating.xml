@@ -1,0 +1,309 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="202103171938-1" author="João Paulo">
+        <createTable tableName="account">
+            <column name="email" type="varchar(150)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_type" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202103171938-2" author="João Paulo">
+        <createTable tableName="person">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="blob"/>
+            <column name="account_id" type="varchar(150)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="person" baseColumnNames="account_id"
+                                 constraintName="person_account" referencedTableName="account"
+                                 referencedColumnNames="email"/>
+
+    </changeSet>
+    
+    <changeSet id="202103171938-3" author="João Paulo">
+        <createTable tableName="person_natural">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpf" type="char(11)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="person_natural" columnNames="person_id" constraintName="pn_person_un"/>
+        <addUniqueConstraint tableName="person_natural" columnNames="cpf" constraintName="pers_nat_cpf_un"/>
+    </changeSet>
+    
+    <changeSet id="202103171938-4" author="João Paulo">
+        <createTable tableName="person_legal">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cnpj" type="char(14)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="person_legal" columnNames="person_id" constraintName="pl_person_un"/>
+        <addUniqueConstraint tableName="person_legal" columnNames="cnpj" constraintName="person_legal_cnpj_un"/>
+    </changeSet>
+    
+    <changeSet id="202103171938-5" author="João Paulo">
+        <createTable tableName="city">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202103172017-6" author="Leandro">
+        <createTable tableName="address">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="street" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="varchar(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="neighborhood" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="complement" type="varchar(100)"/>
+            <column name="city_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="address" baseColumnNames="city_id"
+                                 constraintName="address_city" referencedTableName="city"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="202103172017-7" author="Leandro">
+        <createTable tableName="client">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="person_natural_id" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="client" baseColumnNames="person_natural_id"
+                                 constraintName="client_person_nat" referencedTableName="person_natural"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="202103172017-8" author="Leandro">
+        <createTable tableName="deliveryperson">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="person_natural_id" type="bigint"/>
+            <column name="person_legal_id" type="bigint"/>
+            <column name="vehicle_type" type="tinyint"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="deliveryperson" baseColumnNames="person_natural_id"
+                                 constraintName="delpers_pers_nat" referencedTableName="person_natural"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="deliveryperson" baseColumnNames="person_legal_id"
+                                 constraintName="delpers_pers_leg" referencedTableName="person_legal"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="202103172017-9" author="Leandro">
+        <createTable tableName="restaurant">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="person_legal_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_open" type="bit(1)" startWith="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="restaurant" baseColumnNames="person_legal_id"
+                                 constraintName="restaurant_pers_leg" referencedTableName="person_legal"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="202103172017-9" author="João Paulo">
+        <createTable tableName="order">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="datetime" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_value" type="numeric(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="need_exchange" type="bit(1)" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="exchange" type="numeric(10,2)" defaultValue="0.0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_type" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restaurant_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deliveryperson_id" type="bigint"/>
+            <column name="client_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="need_delivery" type="bit(1)" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="order" baseColumnNames="restaurant_id"
+                                 constraintName="order_restaurant" referencedTableName="restaurant"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="order" baseColumnNames="deliveryperson_id"
+                                 constraintName="order_delpers" referencedTableName="deliveryperson"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="order" baseColumnNames="client_id"
+                                 constraintName="order_client" referencedTableName="client"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="202103172017-10" author="Leandro">
+        <createTable tableName="item_category">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="bit(1)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="blob"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202103172017-11" author="Leandro">
+        <createTable tableName="item">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="bit(1)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="blob"/>
+            <column name="restaurant_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_category_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="item" baseColumnNames="restaurant_id"
+                                 constraintName="item_restaurant" referencedTableName="restaurant"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="item" baseColumnNames="item_category_id"
+                                 constraintName="item_itcategory" referencedTableName="item_category"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="202103172017-11" author="João Paulo">
+        <createTable tableName="extra">
+            <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="bit(1)" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image" type="blob"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202103172017-12" author="João Paulo">
+        <createTable tableName="item_extra">
+            <column name="extra_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="item_extra" baseColumnNames="extra_id"
+                                 constraintName="item_extra_ext" referencedTableName="extra"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="item_extra" baseColumnNames="item_id"
+                                 constraintName="item_extra_it" referencedTableName="item"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="202103172017-13" author="João Paulo">
+        <createTable tableName="order_item">
+            <column name="order_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="order_item" baseColumnNames="order_id"
+                                 constraintName="order_item_ord" referencedTableName="order"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="order_item" baseColumnNames="item_id"
+                                 constraintName="order_item_it" referencedTableName="item"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
