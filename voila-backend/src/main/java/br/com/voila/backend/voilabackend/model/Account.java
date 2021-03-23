@@ -19,19 +19,15 @@ import javax.validation.constraints.NotNull;
 public class Account {
     @Id
     @Column(name = "email")
-    @NotNull
     private String email;
 
     @Column(name = "username")
-    @NotNull
     private String username;
 
     @Column(name = "password")
-    @NotNull
     private String password;
 
     @Column(name = "account_type")
-    @NotNull
     @Enumerated(EnumType.ORDINAL)
     private AccountTypeEnum accountType;
 }

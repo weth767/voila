@@ -1,0 +1,15 @@
+{
+  "person": {
+    "name": "jose",
+    "phone": "34343434",
+    "image": null,
+    "account": {
+      "email": "teste@1234.com",
+      "username": "teste",
+      "password": "123456"
+    }
+  },
+  "cpf": "12345678910",
+  "birthday": "2021-01-20",
+  "gender": "MASCULINE"
+}
