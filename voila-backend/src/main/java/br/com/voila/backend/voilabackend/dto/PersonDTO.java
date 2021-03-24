@@ -1,14 +1,13 @@
-package br.com.voila.backend.voilabackend.domain;
+package br.com.voila.backend.voilabackend.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class PersonDomain {
-    private Long id;
+public class PersonDTO {
     private String name;
     private String phone;
     private byte[] image;
-    private AccountDomain account;
+    private AccountDTO account;
 }
