@@ -17,26 +17,17 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "person")
-public class Person {
+@Table(name = "restaurant")
+public class Restaurant {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_legal_id")
+    private PersonLegal personLegal;
 
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "image")
-    private byte[] image;
-
-    @JoinColumn(name = "account_id")
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Account account;
-
-    @OneToOne(mappedBy = "person")
-    private Address address;
+    @Column(name = "is_open")
+    private Boolean open;
 }
