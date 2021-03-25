@@ -16,5 +16,6 @@ public class ItemDTO {
     private Boolean isActive;
     private byte[] image;
     private ItemCategoryDTO itemCategory;
+    private RestaurantDTO restaurant;
     private List<ExtraDTO> extras;
 }

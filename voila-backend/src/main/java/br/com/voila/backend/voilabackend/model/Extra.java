@@ -32,10 +32,4 @@ public class Extra {
 
     @Column(name = "image")
     private byte[] image;
-
-    //RESTAURANT ID <- COLOCAR AQUI O MAPEAMENTO
-
-    @JoinColumn(name = "item_category_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private ItemCategory itemCategory;
 }

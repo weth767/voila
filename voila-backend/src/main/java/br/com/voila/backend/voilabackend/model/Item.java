@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -35,7 +34,9 @@ public class Item {
     @Column(name = "image")
     private byte[] image;
 
-    //RESTAURANT ID <- COLOCAR AQUI O MAPEAMENTO
+    @JoinColumn(name = "restaurant_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Restaurant restaurant;
 
     @JoinColumn(name = "item_category_id")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

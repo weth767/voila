@@ -14,5 +14,4 @@ public class ExtraDTO {
     private BigDecimal price;
     private Boolean isActive;
     private byte[] image;
-    private ItemCategoryDTO itemCategory;
 }
