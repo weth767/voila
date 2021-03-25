@@ -4,7 +4,7 @@ import br.com.voila.backend.voilabackend.dto.ItemDTO;
 import br.com.voila.backend.voilabackend.model.Item;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", uses = {ExtraMapper.class})
+@Mapper(componentModel = "spring", uses = {ExtraMapper.class}) //COLOCAR O RESTAURANTE AQUI TBM
 public interface ItemMapper {
 
     Item toEntity(ItemDTO person);
