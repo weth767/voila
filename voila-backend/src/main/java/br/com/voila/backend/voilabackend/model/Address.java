@@ -3,7 +3,6 @@ package br.com.voila.backend.voilabackend.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,26 +16,30 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "person")
-public class Person {
+@Table(name = "address")
+public class Address {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
+    private Person person;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "street")
+    private String street;
 
-    @Column(name = "image")
-    private byte[] image;
+    @Column(name = "number")
+    private String number;
 
-    @JoinColumn(name = "account_id")
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Account account;
+    @Column(name = "neighborhood")
+    private String neighborhood;
 
-    @OneToOne(mappedBy = "person")
-    private Address address;
+    @Column(name = "complement")
+    private String complement;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
+    private City city;
 }
