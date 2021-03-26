@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "order")
@@ -52,4 +53,11 @@ public class Order {
     @JoinColumn(name = "client_id")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Client client;
+
+    @ManyToMany
+    @JoinTable(name = "order_item",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "item_id")}
+    )
+    private List<Item> items;
 }

@@ -5,7 +5,7 @@ import br.com.voila.backend.voilabackend.model.Order;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring", uses = {RestaurantMapper.class,ClientMapper.class})
+@Mapper(componentModel = "spring", uses = {RestaurantMapper.class,ClientMapper.class,ItemMapper.class})
 @Component
 public interface OrderMapper {
 
