@@ -1,6 +1,7 @@
 package br.com.voila.backend.voilabackend.service;
 
 import br.com.voila.backend.voilabackend.dto.RestaurantDTO;
+import br.com.voila.backend.voilabackend.enums.AccountTypeEnum;
 import br.com.voila.backend.voilabackend.exception.ParametrizedMessageException;
 import br.com.voila.backend.voilabackend.mapper.RestaurantMapper;
 import br.com.voila.backend.voilabackend.model.Restaurant;
@@ -41,13 +42,14 @@ public class RestaurantService {
         return restaurantMapper.toDTO(restaurant);
     }
 
-    public void update(Long id, Restaurant restaurantCategory) {
+    public void update(Long id, Restaurant restaurantUpdate) {
         Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Restaurante não econtrado"));
-        restaurantCategory.setId(restaurant.getId());
-        restaurantMapper.toDTO(restaurantRepository.save(restaurantCategory));
+        restaurantUpdate.setId(restaurant.getId());
+        restaurantMapper.toDTO(restaurantRepository.save(restaurantUpdate));
     }
 
     public RestaurantDTO save(Restaurant restaurant) {
+        restaurant.getPersonLegal().getPerson().getAccount().setAccountType(AccountTypeEnum.RESTAURANT);
         return restaurantMapper.toDTO(restaurantRepository.save(restaurant));
     }
 
