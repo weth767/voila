@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,10 +22,12 @@ public class ItemCategoryService {
     private final ItemCategoryMapper itemCategoryMapper;
     private final ItemCategoryRepository itemCategoryRepository;
 
+    @Transactional(readOnly=true)
     public Page<ItemCategoryDTO> findAll(Pageable pageable) {
         return itemCategoryRepository.findAll(pageable).map(itemCategoryMapper::toDTO);
     }
 
+    @Transactional(readOnly=true)
     public List<ItemCategoryDTO> findAll() {
         return itemCategoryRepository.findAll()
                 .stream()
@@ -34,6 +36,7 @@ public class ItemCategoryService {
     }
 
 
+    @Transactional(readOnly=true)
     public ItemCategoryDTO findById(Long id) {
         ItemCategory item = itemCategoryRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Catergoria não econtrada"));
         return itemCategoryMapper.toDTO(item);
