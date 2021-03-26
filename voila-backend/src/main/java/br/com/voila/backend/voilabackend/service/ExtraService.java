@@ -1,10 +1,8 @@
 package br.com.voila.backend.voilabackend.service;
 
 import br.com.voila.backend.voilabackend.dto.ExtraDTO;
-import br.com.voila.backend.voilabackend.dto.ExtraDTO;
 import br.com.voila.backend.voilabackend.exception.ParametrizedMessageException;
 import br.com.voila.backend.voilabackend.mapper.ExtraMapper;
-import br.com.voila.backend.voilabackend.model.Extra;
 import br.com.voila.backend.voilabackend.model.Extra;
 import br.com.voila.backend.voilabackend.repository.ExtraRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,10 +22,12 @@ public class ExtraService {
     private final ExtraMapper extraMapper;
     private final ExtraRepository extraRepository;
 
+    @Transactional(readOnly=true)
     public Page<ExtraDTO> findAll(Pageable pageable) {
         return extraRepository.findAll(pageable).map(extraMapper::toDTO);
     }
 
+    @Transactional(readOnly=true)
     public List<ExtraDTO> findAll() {
         return extraRepository.findAll()
                 .stream()
@@ -35,6 +35,7 @@ public class ExtraService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly=true)
     public ExtraDTO findById(Long id) {
         Extra extra = extraRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Extra não econtrada"));
         return extraMapper.toDTO(extra);
