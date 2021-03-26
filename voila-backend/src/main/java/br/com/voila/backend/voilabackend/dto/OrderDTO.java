@@ -1,11 +1,13 @@
 package br.com.voila.backend.voilabackend.dto;
 
 import br.com.voila.backend.voilabackend.enums.PaymentTypeEnum;
+import br.com.voila.backend.voilabackend.model.Item;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,4 +22,5 @@ public class OrderDTO {
     private RestaurantDTO restaurant;
     private DeliveryPersonDTO deliveryperson;
     private ClientDTO client;
+    private List<ItemDTO> items;
 }
