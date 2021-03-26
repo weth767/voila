@@ -35,6 +35,11 @@ public class ExtraService {
                 .collect(Collectors.toList());
     }
 
+    public ExtraDTO findById(Long id) {
+        Extra extra = extraRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Extra não econtrada"));
+        return extraMapper.toDTO(extra);
+    }
+
     public void update(Long id, Extra itemCategory) {
         Extra item = extraRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Extra não econtrado"));
         itemCategory.setId(item.getId());

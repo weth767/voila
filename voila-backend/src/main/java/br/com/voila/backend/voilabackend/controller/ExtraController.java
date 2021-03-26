@@ -50,4 +50,9 @@ public class ExtraController {
         return ResponseEntity.ok(extraService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ExtraDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(extraService.findById(id));
+    }
+
 }

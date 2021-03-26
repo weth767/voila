@@ -50,4 +50,8 @@ public class ItemController {
         return ResponseEntity.ok(itemService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ItemDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(itemService.findById(id));
+    }
 }

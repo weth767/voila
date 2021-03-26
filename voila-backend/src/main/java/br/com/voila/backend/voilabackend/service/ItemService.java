@@ -33,6 +33,11 @@ public class ItemService {
                 .collect(Collectors.toList());
     }
 
+    public ItemDTO findById(Long id) {
+        Item item = itemRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Item não econtrado"));
+        return itemMapper.toDTO(item);
+    }
+
     public void update(Long id, Item itemCategory) {
         Item item = itemRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Item não econtrado"));
         itemCategory.setId(item.getId());

@@ -1,7 +1,6 @@
 package br.com.voila.backend.voilabackend.controller;
 
 import br.com.voila.backend.voilabackend.dto.ItemCategoryDTO;
-import br.com.voila.backend.voilabackend.dto.ItemCategoryDTO;
 import br.com.voila.backend.voilabackend.mapper.ItemCategoryMapper;
 import br.com.voila.backend.voilabackend.service.ItemCategoryService;
 import lombok.RequiredArgsConstructor;
@@ -51,4 +50,8 @@ public class ItemCategoryController {
         return ResponseEntity.ok(itemCategoryService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ItemCategoryDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(itemCategoryService.findById(id));
+    }
 }
