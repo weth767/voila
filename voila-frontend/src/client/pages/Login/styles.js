@@ -48,6 +48,7 @@ export const Input = styled.input`
   width: 50%;
   margin-top: 1vh;
   border-color: var(--color-red);
+  font-family: 'Londrina Solid', sans-serif;
 
   ::placeholder,
   ::-webkit-input-placeholder {
