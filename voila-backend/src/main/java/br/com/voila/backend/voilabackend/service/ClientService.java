@@ -55,7 +55,9 @@ public class ClientService {
 
     public AccountDTO login(String email, String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        Account account = accountRepository.findByEmailAndPassword(email, passwordEncoder.encode(password))
+        Account account = accountRepository
+                .findByEmailAndPasswordAndAccountType(email, passwordEncoder.encode(password),
+                        AccountTypeEnum.CLIENT)
                 .orElseThrow(() -> new ParametrizedMessageException("Email ou senha incorretos"));
         AccountDTO accountDTO = accountMapper.toDTO(account);
         accountDTO.setPassword(null);

@@ -1,5 +1,6 @@
 package br.com.voila.backend.voilabackend.controller;
 
+import br.com.voila.backend.voilabackend.dto.AccountDTO;
 import br.com.voila.backend.voilabackend.dto.RestaurantDTO;
 import br.com.voila.backend.voilabackend.mapper.RestaurantMapper;
 import br.com.voila.backend.voilabackend.service.RestaurantService;
@@ -54,5 +55,11 @@ public class RestaurantController {
     @GetMapping("/{id}")
     public ResponseEntity<RestaurantDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(restaurantService.findById(id));
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<AccountDTO> login(@RequestParam("email") String email,
+                                            @RequestParam("password") String password) {
+        return ResponseEntity.ok(restaurantService.login(email, password));
     }
 }

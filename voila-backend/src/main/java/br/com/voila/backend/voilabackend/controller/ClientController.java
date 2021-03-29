@@ -39,7 +39,7 @@ public class ClientController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping("/login")
     public ResponseEntity<AccountDTO> login(@RequestParam("email") String email,
                                             @RequestParam("password") String password) {
         return ResponseEntity.ok(clientService.login(email, password));
