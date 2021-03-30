@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import BannerImage from '../../../assets/banner.png';
-import LogoImage from '../../../assets/voila_logo.png';
 import '../../../global.css';
 
 export const Banner = styled.img`
@@ -10,9 +9,9 @@ export const Banner = styled.img`
 `;
 
 export const Logo = styled.img`
-  background-image: url(${LogoImage});
-  width: 128px;
-  height: 128px;
+  height: 256px;
+  width: 256px;
+  top: 0;
 `;
 
 export const Button = styled.button`
@@ -29,6 +28,8 @@ export const Button = styled.button`
 
 export const Container = styled.div`
   display: flex;
+  width: 100%;
+  height: 100vh;
 `;
 
 export const Form = styled.form`
@@ -37,7 +38,7 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
   border: 2px solid var(--color-red);
-  width: 70%;
+  width: 50%;
   height: 100vh;
 `;
 
@@ -49,6 +50,7 @@ export const Input = styled.input`
   margin-top: 1vh;
   border-color: var(--color-red);
   font-family: 'Londrina Solid', sans-serif;
+  font-size: 16px;
 
   ::placeholder,
   ::-webkit-input-placeholder {
