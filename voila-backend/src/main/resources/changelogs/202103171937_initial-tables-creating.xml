@@ -10,7 +10,7 @@
             <column name="username" type="varchar(80)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="varchar(80)">
+            <column name="password" type="varchar(200)">
                 <constraints nullable="false"/>
             </column>
             <column name="account_type" type="tinyint">

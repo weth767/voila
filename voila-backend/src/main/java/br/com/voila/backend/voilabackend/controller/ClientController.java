@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 
 @RestController
 @RequestMapping("/client")
@@ -27,7 +28,7 @@ public class ClientController {
 
     @PostMapping
     public ResponseEntity<AccountDTO> save(
-            @RequestBody ClientDTO clientDTO) {
+            @RequestBody ClientDTO clientDTO) throws NoSuchAlgorithmException {
         AccountDTO account = clientService.save(clientMapper.toEntity(clientDTO));
         return ResponseEntity.created(URI.create(URL + "/" + account.getEmail()))
                 .body(account);
@@ -39,9 +40,9 @@ public class ClientController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping("/login")
     public ResponseEntity<AccountDTO> login(@RequestParam("email") String email,
-                                            @RequestParam("password") String password) {
+                                            @RequestParam("password") String password) throws NoSuchAlgorithmException {
         return ResponseEntity.ok(clientService.login(email, password));
     }
 }
