@@ -13,6 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 @Service
 @Transactional
@@ -23,13 +27,11 @@ public class ClientService {
     private final AccountMapper accountMapper;
     private final ClientRepository clientRepository;
 
-    public AccountDTO save(Client client) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        client.getPersonNatural().getPerson().getAccount().setPassword(
-                passwordEncoder.encode(
-                        client.getPersonNatural().getPerson().getAccount().getPassword()
-                )
-        );
+    public AccountDTO save(Client client) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] encodedhash = digest.digest(
+                client.getPersonNatural().getPerson().getAccount().getPassword().getBytes(StandardCharsets.UTF_8));
+        client.getPersonNatural().getPerson().getAccount().setPassword(Arrays.toString(encodedhash));
         client.getPersonNatural().getPerson().getAccount().setAccountType(AccountTypeEnum.CLIENT);
         client = clientRepository.save(client);
         AccountDTO account = accountMapper.toDTO(client.getPersonNatural().getPerson().getAccount());
@@ -41,22 +43,23 @@ public class ClientService {
         Client searchedClient = clientRepository.findByPersonNaturalCpf(cpf)
                 .orElseThrow(() -> new ParametrizedMessageException("Dados do usuário não encontrados"));
         searchedClient.getPersonNatural()
-                .setBirthday(searchedClient.getPersonNatural().getBirthday());
+                .setBirthday(client.getPersonNatural().getBirthday());
         searchedClient.getPersonNatural()
-                .setGender(searchedClient.getPersonNatural().getGender());
+                .setGender(client.getPersonNatural().getGender());
         searchedClient.getPersonNatural().getPerson()
-                .setName(searchedClient.getPersonNatural().getPerson().getName());
+                .setName(client.getPersonNatural().getPerson().getName());
         searchedClient.getPersonNatural().getPerson()
-                .setImage(searchedClient.getPersonNatural().getPerson().getImage());
+                .setImage(client.getPersonNatural().getPerson().getImage());
         searchedClient.getPersonNatural().getPerson()
-                .setPhone(searchedClient.getPersonNatural().getPerson().getPhone());
+                .setPhone(client.getPersonNatural().getPerson().getPhone());
         clientRepository.saveAndFlush(searchedClient);
     }
 
-    public AccountDTO login(String email, String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public AccountDTO login(String email, String password) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] encodedhash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
         Account account = accountRepository
-                .findByEmailAndPasswordAndAccountType(email, passwordEncoder.encode(password),
+                .findByEmailAndPasswordAndAccountType(email, Arrays.toString(encodedhash),
                         AccountTypeEnum.CLIENT)
                 .orElseThrow(() -> new ParametrizedMessageException("Email ou senha incorretos"));
         AccountDTO accountDTO = accountMapper.toDTO(account);
