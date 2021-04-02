@@ -12,12 +12,12 @@ export const STATES = [
         "name": "Alagoas"
     },
     {
-        "id": "AMAPA",
-        "name": "Amapá"
-    },
-    {
         "id": "AMAZONAS",
         "name": "Amazonas"
+    },
+    {
+        "id": "AMAPA",
+        "name": "Amapá"
     },    
     {
         "id": "BAHIA",
@@ -44,16 +44,16 @@ export const STATES = [
         "name": "Maranhão"
     },
     {
-        "id": "MATO_GROSSO",
-        "name": "Mato Grosso"
+        "id": "MINAS_GERAIS",
+        "name": "Minas Gerais"
     },
     {
         "id": "MATO_GROSSO_SUL",
         "name": "Mato Grosso do Sul"
     },
     {
-        "id": "MINAS_GERAIS",
-        "name": "Minas Gerais"
+        "id": "MATO_GROSSO",
+        "name": "Mato Grosso"
     },
     {
         "id": "PARA",
@@ -64,16 +64,16 @@ export const STATES = [
         "name": "Paraíba"
     },
     {
-        "id": "PARANA",
-        "name": "Paraná"
-    },
-    {
         "id": "PERNAMBUCO",
         "name": "Pernambuco"
     },
     {
         "id": "PIAUI",
-        "name": "Piauí"
+        "name": "Piaui"
+    },
+    {
+        "id": "PARANA",
+        "name": "Paraná"
     },
     {
         "id": "RIO_JANEIRO",
@@ -84,10 +84,6 @@ export const STATES = [
         "name": "Rio Grande do Norte"
     },
     {
-        "id": "RIO_GRANDE_SUL",
-        "name": "Rio Grande do Sul"
-    },
-    {
         "id": "RONDONIA",
         "name": "Rondônia"
     },
@@ -96,16 +92,20 @@ export const STATES = [
         "name": "Roraima"
     },
     {
+        "id": "RIO_GRANDE_SUL",
+        "name": "Rio Grande do Sul"
+    },
+    {
         "id": "SANTA_CATARINA",
         "name": "Santa Catarina"
     },
     {
-        "id": "SAO_PAULO",
-        "name": "São Paulo"
-    },
-    {
         "id": "SERGIPE",
         "name": "Sergipe"
+    },
+    {
+        "id": "SAO_PAULO",
+        "name": "São Paulo"
     },
     {
         "id": "TOCANTINS",
