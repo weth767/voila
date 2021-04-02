@@ -30,7 +30,7 @@
             <column name="phone" type="varchar(12)">
                 <constraints nullable="false"/>
             </column>
-            <column name="image" type="blob"/>
+            <column name="image" type="mediumblob"/>
             <column name="account_id" type="varchar(150)">
                 <constraints nullable="false"/>
             </column>
@@ -221,7 +221,7 @@
             <column name="is_active" type="bit(1)" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
-            <column name="image" type="blob"/>
+            <column name="image" type="mediumblob"/>
         </createTable>
     </changeSet>
 
@@ -239,7 +239,7 @@
             <column name="is_active" type="bit(1)" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
-            <column name="image" type="blob"/>
+            <column name="image" type="mediumblob"/>
             <column name="restaurant_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
@@ -269,7 +269,7 @@
             <column name="is_active" type="bit(1)" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
-            <column name="image" type="blob"/>
+            <column name="image" type="mediumblob"/>
         </createTable>
     </changeSet>
 

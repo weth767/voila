@@ -10,4 +10,5 @@ public class PersonDTO {
     private String phone;
     private byte[] image;
     private AccountDTO account;
+    private AddressDTO address;
 }
