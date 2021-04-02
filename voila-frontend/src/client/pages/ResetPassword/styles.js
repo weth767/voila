@@ -4,18 +4,22 @@ import BannerImage from "../../../assets/banner.png";
 export const Title = styled.h1`
   font-family: 'Londrina Solid', sans-serif;
   color: var(--color-red);
-  font-size: 26px;
+  font-size: 2vw;
 `;
 
 export const ContainerFlex = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 70%;
+  button {
+    margin-right: 1vw;
+  }
 `;
 
 export const Span = styled.span`
   font-family: 'Londrina Solid', sans-serif;
-  font-size: 1.5vw;
+  font-size: 1.35vw;
   font-weight: bold;
   margin-left: 1vw;
   margin-top: 1vh;
@@ -32,8 +36,8 @@ export const Banner = styled.img`
 `;
 
 export const Logo = styled.img`
-  height: 176px;
-  width: 176px;
+  height: 256px;
+  width: 256px;
 `;
 
 export const Button = styled.button`
@@ -45,7 +49,7 @@ export const Button = styled.button`
   background-color: var(--color-red);
   font-family: 'Londrina Solid', sans-serif;
   border-color: var(--color-red);
-  font-size: 16px;
+  font-size: 1.5vw;
 `;
 
 export const Container = styled.div`
@@ -72,13 +76,13 @@ export const Input = styled.input`
   margin-top: 1vh;
   border-color: var(--color-red);
   font-family: 'Londrina Solid', sans-serif;
-  font-size: 16px;
+  font-size: 1.2vw;
 
   ::placeholder,
   ::-webkit-input-placeholder {
     color: var(--color-red);
     font-family: 'Londrina Solid', sans-serif;
-    font-size: 14px;
+    font-size: 1.2vw;
   }
   :-ms-input-placeholder {
     color: var(--color-red);

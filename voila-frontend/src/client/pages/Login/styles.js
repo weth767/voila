@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import BannerImage from '../../../assets/banner.png';
 import '../../../global.css';
 
+export const Title = styled.h1`
+  font-family: 'Londrina Solid', sans-serif;
+  color: var(--color-red);
+  font-size: 2vw;
+`;
+
 export const Banner = styled.img`
   background-image: url(${BannerImage});
   width: 70vw;
@@ -23,13 +29,31 @@ export const Button = styled.button`
   background-color: var(--color-red);
   font-family: 'Londrina Solid', sans-serif;
   border-color: var(--color-red);
-  font-size: 16px;
+  font-size: 1.5vw;
 `;
 
 export const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
+`;
+
+export const ContainerFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Span = styled.span`
+  font-family: 'Londrina Solid', sans-serif;
+  font-size: 1.35vw;
+  font-weight: bold;
+  margin-left: 1vw;
+  margin-top: 1vh;
+  a {
+    color: var(--color-red);
+    text-decoration: none;
+  }
 `;
 
 export const Form = styled.form`
@@ -50,13 +74,13 @@ export const Input = styled.input`
   margin-top: 1vh;
   border-color: var(--color-red);
   font-family: 'Londrina Solid', sans-serif;
-  font-size: 16px;
+  font-size: 1.2vw;
 
   ::placeholder,
   ::-webkit-input-placeholder {
     color: var(--color-red);
     font-family: 'Londrina Solid', sans-serif;
-    font-size: 14px;
+    font-size: 1.2vw;
   }
   :-ms-input-placeholder {
     color: var(--color-red);
