@@ -13,4 +13,6 @@ public interface AccountRepository extends JpaRepository<Account, String> {
                                                            AccountTypeEnum accountTypeEnum);
 
     Optional<Account> findByEmail(String email);
+
+    boolean existsAccountByEmail(String email);
 }
