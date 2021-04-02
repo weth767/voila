@@ -67,19 +67,17 @@ public class ClientService {
         return accountDTO;
     }
 
-    public AccountDTO getUserByEmail(String email) {
-        Account account = accountRepository.findByEmail(email)
-                .orElseThrow(() -> new ParametrizedMessageException("Email não encontrado"));
-        AccountDTO accountDTO = accountMapper.toDTO(account);
-        accountDTO.setPassword(null);
-        return accountDTO;
+    public boolean existsByEmail(String email) {
+        return accountRepository.existsAccountByEmail(email);
     }
 
-    public void recoverPassword(String email, String password) {
-        Account account = accountRepository.findByEmail(email)
+    public void resetPassword(AccountDTO accountDTO) throws NoSuchAlgorithmException {
+        Account account = accountRepository.findByEmail(accountDTO.getEmail())
                 .orElseThrow(() -> new ParametrizedMessageException("Usuário não encontrado"));
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        account.setPassword(passwordEncoder.encode(password));
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] encodedhash = digest.digest(
+                accountDTO.getPassword().getBytes());
+        account.setPassword(Arrays.toString(encodedhash));
         accountRepository.save(account);
     }
 }
