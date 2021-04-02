@@ -4,7 +4,7 @@ import br.com.voila.backend.voilabackend.dto.PersonDTO;
 import br.com.voila.backend.voilabackend.model.Person;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", uses = AccountMapper.class)
+@Mapper(componentModel = "spring", uses = {AccountMapper.class,AddressMapper.class})
 public interface PersonMapper {
     Person toEntity(PersonDTO person);
 

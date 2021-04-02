@@ -36,6 +36,11 @@ export const Container = styled.div`
   width: 100%;
  
 `;
+export const ContainerFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -87,5 +92,16 @@ export const Select = styled.select`
   :focus {
     border-color: var(--color-red);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--color-red);
+  }
+`;
+export const Span = styled.span`
+  font-family: 'Londrina Solid', sans-serif;
+  font-size: 1.5vw;
+  font-weight: bold;
+  margin-left: 1vw;
+  margin-top: 1vh;
+  a {
+    color: var(--color-red);
+    text-decoration: none;
   }
 `;
