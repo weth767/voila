@@ -33,6 +33,7 @@ public class ClientService {
                 client.getPersonNatural().getPerson().getAccount().getPassword().getBytes(StandardCharsets.UTF_8));
         client.getPersonNatural().getPerson().getAccount().setPassword(Arrays.toString(encodedhash));
         client.getPersonNatural().getPerson().getAccount().setAccountType(AccountTypeEnum.CLIENT);
+        client.getPersonNatural().getPerson().getAddress().setPerson(client.getPersonNatural().getPerson());
         client = clientRepository.save(client);
         AccountDTO account = accountMapper.toDTO(client.getPersonNatural().getPerson().getAccount());
         account.setPassword(null);
