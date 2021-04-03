@@ -8,6 +8,7 @@ import {
     NotificationContainer,
     NotificationManager,
 } from "react-notifications";
+import 'react-notifications/lib/notifications.css';
 
 export default function LoginRestaurant() {
     const [email, setEmail] = useState('');

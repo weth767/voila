@@ -5,6 +5,8 @@ import axios from 'axios';
 import LogoImage from '../../../assets/voila_logo.png';
 import {Link} from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
+import { NotificationContainer, NotificationManager } from "react-notifications";
+import 'react-notifications/lib/notifications.css';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -12,7 +14,6 @@ export default function Login() {
     const history = useHistory();
 
     async function login() {
-        history.push("/");
         if (!email || email.length === 0) {
             return;
         }
@@ -23,8 +24,11 @@ export default function Login() {
                 email: email,
                 password: password
             }}).then(res => {
-            console.log(res);
-        });
+                history.push('/client/home');
+            }, error => {
+                return NotificationManager.error("Email ou senha incorretos",
+                    "Erro", 1000);
+            });
     }
 
     return (
@@ -41,6 +45,7 @@ export default function Login() {
                     <Span><Link to="/client/recovery">Esqueci minha senha</Link></Span>
                 </ContainerFlex>
             </Form>
+            <NotificationContainer />
         </Container>
     )
 }

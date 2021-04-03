@@ -32,8 +32,8 @@ export const Banner = styled.img`
 `;
 
 export const Logo = styled.img`
-  height: 176px;
-  width: 176px;
+  height: 20vh;
+  width: 10vw;
 `;
 
 export const Button = styled.button`
@@ -65,8 +65,8 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   border-radius: 7px;
-  padding: 1vw;
-  height: 7vh;
+  padding: 1vh 1vw;
+  height: 6vh;
   width: 50%;
   margin-top: 1vh;
   color: var(--color-red);
@@ -92,8 +92,8 @@ export const Input = styled.input`
 `;
 export const Select = styled.select`
   border-radius: 7px;
-  padding: 1vw;
-  height: 7vh;
+  padding: 1vh 1vw;
+  height: 6vh;
   width: 50%;
   margin-top: 1vh;
   border-color: var(--color-red);
