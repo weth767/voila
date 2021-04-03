@@ -6,6 +6,10 @@ import Register from './client/pages/Register';
 import LoginRestaurant from './restaurant/pages/Login';
 import RegisterRestaurant from './restaurant/pages/Register';
 import ResetPassword from './client/pages/ResetPassword';
+import HomeRestaurant from './restaurant/pages/Home';
+import CategoryRestaurant from './restaurant/pages/Category/list';
+import CategoryCreateRestaurant from './restaurant/pages/Category/new';
+
 
 export default function Routes() {
     return (
@@ -19,6 +23,9 @@ export default function Routes() {
                 {/*Restaurant routes*/}
                 <Route path="/restaurant/register" component={RegisterRestaurant}/>
                 <Route path="/restaurant/login" component={LoginRestaurant}/>
+                <Route path="/restaurant/home" component={HomeRestaurant}/>
+                <Route path="/restaurant/category" component={CategoryRestaurant}/>
+                <Route path="/restaurant/category-new" component={CategoryCreateRestaurant}/>
             </Switch>
         </BrowserRouter>
     )
