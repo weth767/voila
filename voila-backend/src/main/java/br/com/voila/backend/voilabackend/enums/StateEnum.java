@@ -1,6 +1,7 @@
 package br.com.voila.backend.voilabackend.enums;
 
 public enum StateEnum {
+    UNKNOWN(0),
     ACRE(1),
     ALAGOAS(2),
     AMAZONAS(3),
