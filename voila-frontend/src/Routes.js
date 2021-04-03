@@ -9,6 +9,12 @@ import ResetPassword from './client/pages/ResetPassword';
 import Orders from "./client/pages/Orders";
 import Finances from "./restaurant/pages/Finances";
 import Restaurant from "./client/pages/Restaurant";
+import HomeRestaurant from './restaurant/pages/Home';
+import CategoryRestaurant from './restaurant/pages/Category/list';
+import CategoryCreateRestaurant from './restaurant/pages/Category/new';
+import ExtraRestaurant from './restaurant/pages/Extra/list';
+import ExtraCreateRestaurant from './restaurant/pages/Extra/new';
+
 
 export default function Routes() {
     return (
@@ -25,6 +31,11 @@ export default function Routes() {
                 {/*Restaurant routes*/}
                 <Route path="/restaurant/register" component={RegisterRestaurant}/>
                 <Route path="/restaurant/login" component={LoginRestaurant}/>
+                <Route path="/restaurant/home" component={HomeRestaurant}/>
+                <Route path="/restaurant/category" component={CategoryRestaurant}/>
+                <Route path="/restaurant/category-new" component={CategoryCreateRestaurant}/>
+                <Route path="/restaurant/extra" component={ExtraRestaurant}/>
+                <Route path="/restaurant/extra-new" component={ExtraCreateRestaurant}/>
             </Switch>
         </BrowserRouter>
     )
