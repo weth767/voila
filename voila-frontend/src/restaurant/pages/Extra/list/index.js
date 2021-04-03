@@ -28,7 +28,7 @@ import {
 } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
 
-export default function CategoryRestaurant() {
+export default function ExtraRestaurant() {
     const history = useHistory();
 
     const [isLoaded, setIsLoaded] = useState(false);
@@ -38,14 +38,18 @@ export default function CategoryRestaurant() {
     
     const columns = [
         {
-            Header: 'Nome',
-            accessor: 'name'
+            Header: 'Descrição',
+            accessor: 'description'
+        },
+        {
+            Header: 'Preço',
+            accessor: 'price'
         },
         {
             Header: 'Opções',
             Cell: row => (
                 <ContentOptions>
-                    <ButtonTable onClick={() => {deleteCategory(row.original.id)}}>Apagar</ButtonTable>
+                    <ButtonTable onClick={() => {deleteExtra(row.original.id)}}>Apagar</ButtonTable>
                 </ContentOptions>
             )
          }
@@ -59,13 +63,13 @@ export default function CategoryRestaurant() {
     },[isLoaded]);
 
     async function search() {
-        await axios.get(`${PATH}/item-category/page`)
+        await axios.get(`${PATH}/extra/page`)
         .then(res => {
             setData(res.data.content);
             setIsLoaded(true);
         }).catch(err =>{
             setIsLoaded(true);
-            return NotificationManager.error("Erro ao buscar categoria",
+            return NotificationManager.error("Erro ao buscar Extras",
                  "Erro", 1000);
         });
     }
@@ -74,16 +78,16 @@ export default function CategoryRestaurant() {
         history.push('/restaurant/login');
     }
 
-    function createCategory() {
-        history.push('/restaurant/category-new');
+    function createExtra() {
+        history.push('/restaurant/extra-new');
     }
 
-    async function deleteCategory(id) {
-        await axios.delete(`${PATH}/item-category/${id}`)
+    async function deleteExtra(id) {
+        await axios.delete(`${PATH}/extra/${id}`)
         .then(res => {
             search();
         }).catch(err =>{
-            return NotificationManager.error("Erro ao apagar categoria",
+            return NotificationManager.error("Erro ao apagar extra",
                  "Erro", 1000);
         });
     }
@@ -133,7 +137,7 @@ export default function CategoryRestaurant() {
                         data={data}
                         columns={columns}
                     />
-                    <Button onClick={() => createCategory()} type="button">Cadastrar Nova Categoria</Button>
+                    <Button onClick={() => createExtra()} type="button">Cadastrar Novo Extra</Button>
                 </Container>
             </Content>
             <NotificationContainer></NotificationContainer>
