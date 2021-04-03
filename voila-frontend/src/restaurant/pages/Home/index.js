@@ -60,7 +60,7 @@ export default function HomeRestaurant() {
                     </MenuItem>
                     <MenuItem>
                         <MdRestaurantMenu color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Cardápio</Link></Span>
+                        <Span><Link to="/restaurant/extra">Extra</Link></Span>
                     </MenuItem>
                     <MenuItem>
                         <MdAttachMoney color={"#ff5757"} size={18}/>

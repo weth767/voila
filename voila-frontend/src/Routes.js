@@ -9,6 +9,8 @@ import ResetPassword from './client/pages/ResetPassword';
 import HomeRestaurant from './restaurant/pages/Home';
 import CategoryRestaurant from './restaurant/pages/Category/list';
 import CategoryCreateRestaurant from './restaurant/pages/Category/new';
+import ExtraRestaurant from './restaurant/pages/Extra/list';
+import ExtraCreateRestaurant from './restaurant/pages/Extra/new';
 
 
 export default function Routes() {
@@ -26,6 +28,8 @@ export default function Routes() {
                 <Route path="/restaurant/home" component={HomeRestaurant}/>
                 <Route path="/restaurant/category" component={CategoryRestaurant}/>
                 <Route path="/restaurant/category-new" component={CategoryCreateRestaurant}/>
+                <Route path="/restaurant/extra" component={ExtraRestaurant}/>
+                <Route path="/restaurant/extra-new" component={ExtraCreateRestaurant}/>
             </Switch>
         </BrowserRouter>
     )
