@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/extra")
 @RequiredArgsConstructor
-@CrossOrigin
 public class ExtraController {
     private static final String URL = "/extra";
     private final ExtraService extraService;

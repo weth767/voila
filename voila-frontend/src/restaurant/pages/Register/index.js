@@ -181,7 +181,7 @@ export default function RegisterRestaurant() {
         }).then(res => {
             NotificationManager.success("Restaurante cadastrado com sucesso",
                  "Sucesso", 1000);
-            history.push('/restaurant/login')
+            history.push('/Restaurant/login')
         }).catch(err => {
             NotificationManager.error("Erro ao cadastrar restaurante",
                  "Erro", 1000);

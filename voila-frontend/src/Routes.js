@@ -6,6 +6,9 @@ import Register from './client/pages/Register';
 import LoginRestaurant from './restaurant/pages/Login';
 import RegisterRestaurant from './restaurant/pages/Register';
 import ResetPassword from './client/pages/ResetPassword';
+import Orders from "./client/pages/Orders";
+import Finances from "./restaurant/pages/Finances";
+import Restaurant from "./client/pages/Restaurant";
 import HomeRestaurant from './restaurant/pages/Home';
 import CategoryRestaurant from './restaurant/pages/Category/list';
 import CategoryCreateRestaurant from './restaurant/pages/Category/new';
@@ -22,6 +25,9 @@ export default function Routes() {
                 <Route path="/client/login" component={Login}/>
                 <Route path="/client/register" component={Register}/>
                 <Route path="/client/recovery" component={ResetPassword}/>
+                <Route path="/client/orders" component={Orders}/>
+                <Route path="/client/finances" component={Finances}/>
+                <Route path="/client/restaurant/:id" component={Restaurant}/>
                 {/*Restaurant routes*/}
                 <Route path="/restaurant/register" component={RegisterRestaurant}/>
                 <Route path="/restaurant/login" component={LoginRestaurant}/>
