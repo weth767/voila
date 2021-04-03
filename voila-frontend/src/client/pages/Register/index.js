@@ -16,13 +16,11 @@ export default function Home() {
         <option key = {i} value={state.id}>{state.name}</option>
     );
 
-
     function setCities(citiesSelected) {
         setCityOption(citiesSelected.map((city,i) =>
             <option key = {i} value={city.id}>{city.name}</option>
         ));
     }
-    
 
     const history = useHistory();
 
@@ -243,7 +241,6 @@ export default function Home() {
                         <option value="City" selected disabled hidden>Selecione uma cidade</option>
                         {cities}
                     </Select>
-
                 </Container>
                 <Input type="file" id="inputPicture" className="form-control-file" onChange={e => sendFile(e)} accept="image/png, image/jpeg" />
                 <Button onClick={() => {register()}} type="button">Registrar</Button>
