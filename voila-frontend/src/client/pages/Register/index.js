@@ -191,7 +191,7 @@ export default function Home() {
         }).then(res => {
             NotificationManager.success("Cliente cadastrado com sucesso",
                  "Sucesso", 1000);
-            history.push('/restaurant/login')
+            history.push('/client/login')
         }).catch(err => {
             NotificationManager.error("Erro ao cadastrar cliente",
                  "Erro", 1000);
