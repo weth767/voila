@@ -4,14 +4,20 @@ import {PATH} from '../../../utils/Consts';
 import axios from 'axios';
 import LogoImage from '../../../assets/voila_logo.png';
 import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const history = useHistory();
 
     async function login() {
+        history.push("/");
         if (!email || email.length === 0) {
-
+            return;
+        }
+        if (!password || password.length === 0) {
+            return;
         }
         await axios.get(`${PATH}/client/login`, {params: {
                 email: email,
