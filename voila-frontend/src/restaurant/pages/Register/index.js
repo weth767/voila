@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import {Button, Container, Title, Banner, Form, Logo,Input,Select} from './styles';
+import {Button, Container, Title, Banner, Form, Logo,Input,Select,ContainerFlex,Span} from './styles';
 import LogoImage from '../../../assets/voila_logo.png';
 import axios from 'axios';
 import { PATH, MAX_SIZE_FILE, STATES } from '../../../utils/Consts';
@@ -9,6 +9,7 @@ import {
     NotificationContainer,
     NotificationManager,
 } from "react-notifications";
+import {Link} from "react-router-dom";
 
 export default function RegisterRestaurant() {
 
@@ -40,7 +41,8 @@ export default function RegisterRestaurant() {
     const [number,setNumber] = useState();
     const [neighborhood,setNeighborhood] = useState();
     const [complement,setComplement] = useState();
-    const [city,setCity] = useState();
+    const [cityId,setCityId] = useState();
+    const [cityName,setCityName] = useState();
 
 
     function checkInput() {
@@ -99,7 +101,7 @@ export default function RegisterRestaurant() {
                  "Erro", 1000);
             return false;
         }
-        if(city === "" || city == null){
+        if(cityName === "" || cityName == null){
             NotificationManager.error("Erro o campo 'cidade' é obrigatório",
                  "Erro", 1000);
             return false;
@@ -140,6 +142,12 @@ export default function RegisterRestaurant() {
        
     }
 
+    function setCity(e) {
+        setCityId(e.target.value);
+        setCityName(e.target[e.target.selectedIndex].innerHTML);
+    }
+
+
     async function register() {
         if(!checkInput()){
             return;
@@ -163,7 +171,8 @@ export default function RegisterRestaurant() {
                         neighborhood: neighborhood,
                         complement: complement,
                         city: {
-                            name:city,
+                            id:cityId,
+                            name:cityName,
                             state:state
                         }
                     }
@@ -209,7 +218,7 @@ export default function RegisterRestaurant() {
                         <option value="State" selected disabled hidden>Selecione um estado</option>
                         {stateList}
                     </Select>
-                    <Select defaultValue={"City"} onChange={e => setCity(e.target.value)}>
+                    <Select defaultValue={"City"} onChange={e => setCity(e)}>
                         <option value="City" selected disabled hidden>Selecione uma cidade</option>
                         {cities}
                     </Select>
@@ -217,6 +226,9 @@ export default function RegisterRestaurant() {
                 </Container>
                 <Input type="file" id="inputPicture" className="form-control-file" onChange={e => sendFile(e)} accept="image/png, image/jpeg" />
                 <Button onClick={() => {register()}} type="button">Registrar</Button>
+                <ContainerFlex>
+                    <Span><Link to="/restaurant/login">Já tenho conta</Link></Span>
+                </ContainerFlex>
             </Form>
             <Banner/>
             <NotificationContainer />

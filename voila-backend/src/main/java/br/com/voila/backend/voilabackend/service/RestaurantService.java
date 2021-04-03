@@ -17,6 +17,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,11 +56,17 @@ public class RestaurantService {
     public void update(Long id, Restaurant restaurantUpdate) {
         Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Restaurante não econtrado"));
         restaurantUpdate.setId(restaurant.getId());
+        restaurant.getPersonLegal().getPerson().getAddress().setPerson(restaurant.getPersonLegal().getPerson());
         restaurantMapper.toDTO(restaurantRepository.save(restaurantUpdate));
     }
 
-    public RestaurantDTO save(Restaurant restaurant) {
+    public RestaurantDTO save(Restaurant restaurant) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] encodedhash = digest.digest(
+                restaurant.getPersonLegal().getPerson().getAccount().getPassword().getBytes(StandardCharsets.UTF_8));
+        restaurant.getPersonLegal().getPerson().getAccount().setPassword(Arrays.toString(encodedhash));
         restaurant.getPersonLegal().getPerson().getAccount().setAccountType(AccountTypeEnum.RESTAURANT);
+        restaurant.getPersonLegal().getPerson().getAddress().setPerson(restaurant.getPersonLegal().getPerson());
         return restaurantMapper.toDTO(restaurantRepository.save(restaurant));
     }
 
@@ -65,10 +75,11 @@ public class RestaurantService {
         restaurantRepository.delete(restaurant);
     }
 
-    public AccountDTO login(String email, String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public AccountDTO login(String email, String password) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] encodedhash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
         Account account = accountRepository
-                .findByEmailAndPasswordAndAccountType(email, passwordEncoder.encode(password),
+                .findByEmailAndPasswordAndAccountType(email, Arrays.toString(encodedhash),
                         AccountTypeEnum.RESTAURANT)
                 .orElseThrow(() -> new ParametrizedMessageException("Email ou senha incorretos"));
         AccountDTO accountDTO = accountMapper.toDTO(account);

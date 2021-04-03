@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class RestaurantController {
 
     @PostMapping
     public ResponseEntity<RestaurantDTO> save(
-            @RequestBody RestaurantDTO restaurantDTO) {
+            @RequestBody RestaurantDTO restaurantDTO) throws NoSuchAlgorithmException {
         RestaurantDTO restaurant = restaurantService.save(restaurantMapper.toEntity(restaurantDTO));
         return ResponseEntity.created(URI.create(URL + "/" + restaurant.getId()))
                 .body(restaurant);
@@ -60,7 +61,7 @@ public class RestaurantController {
 
     @GetMapping("/login")
     public ResponseEntity<AccountDTO> login(@RequestParam("email") String email,
-                                            @RequestParam("password") String password) {
+                                            @RequestParam("password") String password) throws NoSuchAlgorithmException {
         return ResponseEntity.ok(restaurantService.login(email, password));
     }
 }

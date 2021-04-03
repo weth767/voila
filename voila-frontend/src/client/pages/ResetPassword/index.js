@@ -6,6 +6,10 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import {PATH} from "../../../utils/Consts";
 import {useHistory} from 'react-router-dom';
+import {
+    NotificationContainer,
+    NotificationManager,
+} from "react-notifications";
 
 export default function ResetPassword() {
     const [password, setPassword] = useState('');
@@ -19,7 +23,11 @@ export default function ResetPassword() {
             }}).then(res => {
                 if (res.data) {
                     setShowEmail(false);
+                }else{
+                    NotificationManager.error("E-mail não econtrado","Erro", 1000);
                 }
+        }).catch(err => {
+            return NotificationManager.error(err,"Erro", 1000);
         });
     }
 
@@ -60,6 +68,7 @@ export default function ResetPassword() {
                 <Span><Link to="/client/login">Já tenho conta</Link></Span>
             </Form>
             <Banner/>
+            <NotificationContainer />
         </Container>
     );
 }
