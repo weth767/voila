@@ -37,6 +37,7 @@ export default function Routes() {
                 <Route path="/restaurant/extra-new" component={ExtraCreateRestaurant}/>
                 <Route path="/restaurant/orders" component={Orders}/>
                 <Route path="/restaurant/finances" component={Finances}/>
+                <Route path="/restaurant/deliverypersons" component={Finances}/>
             </Switch>
         </BrowserRouter>
     )
