@@ -51,6 +51,33 @@ export const Button = styled.button`
 export const Container = styled.div`
   display: flex;
   width: 100%;
+  .input-mask {
+    border-radius: 7px;
+    padding: 1vh 1vw;
+    height: 6vh;
+    width: 50%;
+    margin-top: 1vh;
+    color: var(--color-red);
+    border-color: var(--color-red);
+    font-family: 'Londrina Solid', sans-serif;
+    font-size: 16px;
+
+    ::placeholder,
+    ::-webkit-input-placeholder {
+      color: var(--color-red);
+      font-family: 'Londrina Solid', sans-serif;
+      font-size: 14px;
+    }
+    :-ms-input-placeholder {
+      color: var(--color-red);
+      font-family: 'Londrina Solid', sans-serif;
+    }
+
+    :focus {
+      border-color: var(--color-red);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--color-red);
+    }
+  }
 `;
 
 export const Form = styled.form`
