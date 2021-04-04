@@ -13,11 +13,8 @@ import FooterComponent from "../../../../components/Footer";
 
 export default function ExtraRestaurant() {
     const history = useHistory();
-
     const [isLoaded, setIsLoaded] = useState(false);
-
     const [data, setData] = useState([]);
-
 
     const columns = [
         {
@@ -55,10 +52,6 @@ export default function ExtraRestaurant() {
                 return NotificationManager.error("Erro ao buscar Extras",
                     "Erro", 1000);
             });
-    }
-
-    function logout() {
-        history.push('/restaurant/login');
     }
 
     function createExtra() {

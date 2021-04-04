@@ -12,16 +12,12 @@ import MenuRestaurant from "../../../../components/MenuRestaurant";
 import FooterComponent from "../../../../components/Footer";
 
 export default function ExtraCreateRestaurant() {
-
     const history = useHistory();
     const [description, setDescription] = useState();
     const [isActive, setIsActive] = useState();
     const [price, setPrice] = useState();
     const [picture, setPicture] = useState();
 
-    function logout() {
-        history.push('/restaurant/login');
-    }
     function checkInput() {
         if(description === "" || description == null){
             NotificationManager.error("Erro o campo 'descrição' é obrigatório",

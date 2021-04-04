@@ -13,11 +13,8 @@ import FooterComponent from "../../../../components/Footer";
 
 export default function CategoryRestaurant() {
     const history = useHistory();
-
     const [isLoaded, setIsLoaded] = useState(false);
-
     const [data, setData] = useState([]);
-
 
     const columns = [
         {
@@ -51,10 +48,6 @@ export default function CategoryRestaurant() {
                 return NotificationManager.error("Erro ao buscar categoria",
                     "Erro", 1000);
             });
-    }
-
-    function logout() {
-        history.push('/restaurant/login');
     }
 
     function createCategory() {

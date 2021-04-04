@@ -11,14 +11,10 @@ import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import FooterComponent from "../../../../components/Footer";
 
 export default function CategoryCreateRestaurant() {
-
     const history = useHistory();
     const [name, setName] = useState();
     const [isActive, setIsActive] = useState();
 
-    function logout() {
-        history.push('/restaurant/login');
-    }
     function checkInput() {
         if(name === "" || name == null){
             NotificationManager.error("Erro o campo 'nome' é obrigatório",
