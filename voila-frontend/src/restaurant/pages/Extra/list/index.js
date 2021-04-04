@@ -1,19 +1,20 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+    Button,
+    ButtonTable,
     Container,
-    Content, 
-    Header, Menu,
+    Content,
+    ContentOptions,
+    Header,
+    Menu,
     MenuItem,
     Options,
+    Span,
     Title,
-    User, UserSpan,
-    Button,
-    ContentOptions,
-    ButtonTable,
-    Span
+    User,
+    UserSpan
 } from './styles';
-import { MdHome, MdDirectionsBike, MdRestaurantMenu, MdAttachMoney } from 'react-icons/md';
-import { GiHamburger } from 'react-icons/gi';
+import { MdAttachMoney, MdDirectionsBike, MdHome, MdRestaurantMenu } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../../assets/user.png';
 import LogoImage from '../../../../assets/voila_logo2.png';
@@ -22,10 +23,7 @@ import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
 import { PATH } from '../../../../utils/Consts';
-import {
-    NotificationContainer,
-    NotificationManager,
-} from "react-notifications";
+import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
 
 export default function ExtraRestaurant() {

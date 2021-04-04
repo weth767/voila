@@ -1,32 +1,30 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import {
+    Button,
     Container,
-    Content, 
-    Header, Menu,
+    Content,
+    Form,
+    Header,
+    Input,
+    Menu,
     MenuItem,
     Options,
-    Title,
-    User, UserSpan,
-    Button,
-    Input,
-    Form,
     Select,
+    Span,
+    Title,
     TitleForm,
-    Span
+    User,
+    UserSpan
 } from './styles';
-import { MdHome, MdDirectionsBike, MdRestaurantMenu, MdAttachMoney } from 'react-icons/md';
-import { GiHamburger } from 'react-icons/gi';
+import { MdAttachMoney, MdDirectionsBike, MdHome, MdRestaurantMenu } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../../assets/user.png';
 import LogoImage from '../../../../assets/voila_logo2.png';
 import { Link, useHistory } from 'react-router-dom';
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
-import { PATH,MAX_SIZE_FILE } from '../../../../utils/Consts';
-import {
-    NotificationContainer,
-    NotificationManager,
-} from "react-notifications";
+import { MAX_SIZE_FILE, PATH } from '../../../../utils/Consts';
+import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
 
 export default function ExtraCreateRestaurant() {

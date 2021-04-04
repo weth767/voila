@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    Card,
     Container,
     Content,
     Footer,
@@ -32,6 +31,7 @@ export default function Restaurant({ match }) {
 
     useEffect(() => {
         findResturant().then(() => {});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function findResturant() {
@@ -41,9 +41,9 @@ export default function Restaurant({ match }) {
         });
     }
 
-    function viewItem(id) {
-
-    }
+    // function viewItem(id) {
+    //
+    // }
 
     return (
         <Container>

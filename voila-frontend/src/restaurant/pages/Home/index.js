@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import {
     Container,
-    Content, Footer,
-    Header, Menu,
+    Content,
+    Footer,
+    Header,
+    Menu,
     MenuItem,
     Options,
     OrderContent,
     OrderItem,
-    OrderList, OrderTitle,
+    OrderList,
+    OrderTitle,
+    Span,
     Title,
-    User, UserSpan,
-    Span
+    User,
+    UserSpan
 } from './styles';
-import { MdHome, MdDirectionsBike, MdRestaurantMenu, MdAttachMoney } from 'react-icons/md';
-import { GiHamburger } from 'react-icons/gi';
+import { MdAttachMoney, MdDirectionsBike, MdHome, MdRestaurantMenu } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../assets/user.png';
 import LogoImage from '../../../assets/voila_logo2.png';
