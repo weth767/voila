@@ -169,11 +169,11 @@
     </changeSet>
 
     <changeSet id="202103172017-9" author="João Paulo">
-        <createTable tableName="order">
+        <createTable tableName="orders">
             <column name="id" type="bigint" autoIncrement="true" incrementBy="1">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="datetime" type="datetime">
+            <column name="date_time" type="datetime">
                 <constraints nullable="false"/>
             </column>
             <column name="total_value" type="numeric(10, 2)">
@@ -182,7 +182,7 @@
             <column name="need_exchange" type="bit(1)" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
-            <column name="exchange" type="numeric(10,2)" defaultValue="0.0">
+            <column name="exchange_value" type="numeric(10,2)" defaultValue="0.0">
                 <constraints nullable="false"/>
             </column>
             <column name="payment_type" type="tinyint">
@@ -198,17 +198,17 @@
             <column name="need_delivery" type="bit(1)" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
-            <column name="status" type="tinyint">
+            <column name="status_order" type="tinyint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseTableName="order" baseColumnNames="restaurant_id"
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="restaurant_id"
                                  constraintName="order_restaurant" referencedTableName="restaurant"
                                  referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="order" baseColumnNames="deliveryperson_id"
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="deliveryperson_id"
                                  constraintName="order_delpers" referencedTableName="deliveryperson"
                                  referencedColumnNames="id"/>
-        <addForeignKeyConstraint baseTableName="order" baseColumnNames="client_id"
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="client_id"
                                  constraintName="order_client" referencedTableName="client"
                                  referencedColumnNames="id"/>
     </changeSet>
@@ -303,7 +303,7 @@
             </column>
         </createTable>
         <addForeignKeyConstraint baseTableName="order_item" baseColumnNames="order_id"
-                                 constraintName="order_item_ord" referencedTableName="order"
+                                 constraintName="order_item_ord" referencedTableName="orders"
                                  referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="order_item" baseColumnNames="item_id"
                                  constraintName="order_item_it" referencedTableName="item"
