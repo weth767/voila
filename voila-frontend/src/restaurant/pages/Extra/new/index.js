@@ -1,32 +1,14 @@
 import React, { useState } from 'react';
-import {
-    Button,
-    Container,
-    Content,
-    Form,
-    Header,
-    Input,
-    Menu,
-    MenuItem,
-    Options,
-    Select,
-    Span,
-    Title,
-    TitleForm,
-    User,
-    UserSpan
-} from './styles';
-import { MdAttachMoney, MdDirectionsBike, MdHome, MdRestaurantMenu } from 'react-icons/md';
-import { FiLogOut } from 'react-icons/fi';
-import UserImage from '../../../../assets/user.png';
-import LogoImage from '../../../../assets/voila_logo2.png';
-import { Link, useHistory } from 'react-router-dom';
+import { Button, Container, Content, Form, Input, Select, TitleForm } from './styles';
+import { useHistory } from 'react-router-dom';
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
 import { MAX_SIZE_FILE, PATH } from '../../../../utils/Consts';
 import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
 import InputCurrency from "../../../../components/InputCurrency";
+import HeaderRestaurant from "../../../../components/HeaderRestaurant";
+import MenuRestaurant from "../../../../components/MenuRestaurant";
 
 export default function ExtraCreateRestaurant() {
 
@@ -42,17 +24,17 @@ export default function ExtraCreateRestaurant() {
     function checkInput() {
         if(description === "" || description == null){
             NotificationManager.error("Erro o campo 'descrição' é obrigatório",
-                 "Erro", 1000);
+                "Erro", 1000);
             return false;
         }
         if(isActive === "" || isActive === null){
             NotificationManager.error("Erro o campo 'Ativo' é obrigatório",
-                 "Erro", 1000);
+                "Erro", 1000);
             return false;
         }
         if(price === "" || price == null){
             NotificationManager.error("Erro o campo 'Ativo' é obrigatório",
-                 "Erro", 1000);
+                "Erro", 1000);
             return false;
         }
         return true;
@@ -68,11 +50,11 @@ export default function ExtraCreateRestaurant() {
             image:picture
         }).then(res => {
             NotificationManager.success("Extra cadastrada com sucesso",
-                 "Sucesso", 1000);
+                "Sucesso", 1000);
             history.push('/restaurant/extra')
         }).catch(err => {
             NotificationManager.error("Erro ao cadastrar extra",
-                 "Erro", 1000);
+                "Erro", 1000);
         });
     }
 
@@ -86,14 +68,14 @@ export default function ExtraCreateRestaurant() {
             if(array.length > MAX_SIZE_FILE){
                 e.target.value = null;
                 return NotificationManager.error("Erro a imagem deve ter no máximo 16MB!",
-                 "Erro", 1000);
+                    "Erro", 1000);
             }
             for (let i = 0; i < array.length; i++) {
                 fileByteArray.push(array[i]);
-             }
+            }
             setPicture(fileByteArray);
         }
-       
+
     }
 
     const handleChange = (event, value, maskedValue) => {
@@ -103,40 +85,9 @@ export default function ExtraCreateRestaurant() {
 
     return (
         <Container>
-            <Header>
-                <img alt="Imagem de logo" src={LogoImage}/>
-                <Title>VOILÀ</Title>
-                <User>
-                    <img alt="Imagem de logo" src={UserImage}/>
-                    <UserSpan>Usuario</UserSpan>
-                    <Options>
-                        <FiLogOut size={32} color={'#fff'} onClick={() => logout()}/>
-                    </Options>
-                </User>
-            </Header>
+            <HeaderRestaurant/>
             <Content>
-                <Menu>
-                <MenuItem>
-                        <MdHome color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Página Inicial</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
-                        <MdDirectionsBike color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Entregadores</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
-                        <MdRestaurantMenu color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/category">Categorias</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
-                        <MdRestaurantMenu color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/extra">Extra</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
-                        <MdAttachMoney color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/finances">Financeiro</Link></Span>
-                    </MenuItem>
-                </Menu>
+                <MenuRestaurant/>
                 <Container>
                     <TitleForm>Extra</TitleForm>
                     <Form>
@@ -149,7 +100,7 @@ export default function ExtraCreateRestaurant() {
                     </Form>
                     <Form>
                         <InputCurrency handleChange={handleChange}
-                                   placeholder="Digite o valor do extra"/>
+                                       placeholder="Digite o valor do extra"/>
                         <Input type="file" id="inputPicture" className="form-control-file" onChange={e => sendFile(e)} accept="image/png, image/jpeg" />
                     </Form>
                     <Button onClick={() => {save()}} type="button">Cadastrar</Button>
