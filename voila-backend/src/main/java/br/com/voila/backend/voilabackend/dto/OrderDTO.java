@@ -1,5 +1,6 @@
 package br.com.voila.backend.voilabackend.dto;
 
+import br.com.voila.backend.voilabackend.enums.OrderStatusEnum;
 import br.com.voila.backend.voilabackend.enums.PaymentTypeEnum;
 import br.com.voila.backend.voilabackend.model.Item;
 import lombok.Getter;
@@ -23,4 +24,5 @@ public class OrderDTO {
     private DeliveryPersonDTO deliveryperson;
     private ClientDTO client;
     private List<ItemDTO> items;
+    private OrderStatusEnum status;
 }

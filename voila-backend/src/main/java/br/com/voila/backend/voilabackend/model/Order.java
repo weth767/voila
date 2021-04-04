@@ -1,6 +1,7 @@
 package br.com.voila.backend.voilabackend.model;
 
 
+import br.com.voila.backend.voilabackend.enums.OrderStatusEnum;
 import br.com.voila.backend.voilabackend.enums.PaymentTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -60,4 +61,8 @@ public class Order {
             inverseJoinColumns = {@JoinColumn(name = "item_id")}
     )
     private List<Item> items;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.ORDINAL)
+    private OrderStatusEnum status;
 }
