@@ -151,7 +151,7 @@ export default function ExtraCreateRestaurant() {
                     <Button onClick={() => {save()}} type="button">Cadastrar</Button>
                 </Container>
             </Content>
-            <NotificationContainer></NotificationContainer>
+            <NotificationContainer/>
         </Container>
     );
 }
