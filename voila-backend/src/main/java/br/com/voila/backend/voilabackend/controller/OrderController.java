@@ -48,7 +48,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.findAll(pageable));
     }
 
-    @GetMapping("/{statusEnum}")
+    @GetMapping("/status/{statusEnum}")
     public ResponseEntity<List<OrderDTO>> findAllByStatus(@PathVariable OrderStatusEnum statusEnum) {
         return ResponseEntity.ok(orderService.findAllByStatus(statusEnum));
     }
