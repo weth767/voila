@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import '../../../global.css';
 
-
 export const Span = styled.span`
   font-family: 'Londrina Solid', sans-serif;
   font-weight: bold;
@@ -77,7 +76,7 @@ export const Menu = styled.ul`
   width: 20vw;
   border: 1px solid var(--color-red);
   overflow-y: scroll;
-  height: 90vh;
+  height: 92vh;
   padding: 1vh 0;
   list-style: none;
   background-color: var(--color-lightgray);
@@ -111,7 +110,7 @@ export const OrderList = styled.ul`
   padding: 1vh 1vw;
   border: 1px solid var(--color-red);
   width: 26.66vw;
-  height: 82vh;
+  height: 84vh;
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
@@ -122,6 +121,7 @@ export const OrderTitle = styled.li`
   font-family: "Londrina Solid", sans-serif;
   font-size: 2.3vw;
   color: var(--color-red);
+  text-align: center;
 `;
 
 export const OrderItem = styled.li`
@@ -141,7 +141,7 @@ export const OrderItem = styled.li`
 export const Footer = styled.footer`
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 80vw;
   height: 8vh;
   border: 1px solid var(--color-red);
   border-left: none;
