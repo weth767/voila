@@ -23,6 +23,10 @@ import LogoImage from '../../../assets/voila_logo2.png';
 import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 import { PATH, STATUS_ORDERS } from "../../../utils/Consts";
+import HeaderRestaurant from "../../../components/HeaderRestaurant";
+import MenuRestaurant from "../../../components/MenuRestaurant";
+import { FooterContent } from "../../../components/Footer/styles";
+import FooterComponent from "../../../components/Footer";
 
 export default function HomeRestaurant() {
     const url = "https://images.vexels.com/media/users/3/143047/isolated/preview/b0c9678466af11dd45a62163bdcf03fe-iacute-cone-plano-de-hamb-uacute-rguer-de-fast-food-by-vexels.png";
@@ -56,40 +60,9 @@ export default function HomeRestaurant() {
 
     return (
         <Container>
-            <Header>
-                <img alt="Imagem de logo" src={LogoImage}/>
-                <Title>VOILÀ</Title>
-                <User>
-                    <img alt="Imagem de logo" src={UserImage}/>
-                    <UserSpan>Usuario</UserSpan>
-                    <Options>
-                        <FiLogOut size={32} color={'#fff'} onClick={() => logout()}/>
-                    </Options>
-                </User>
-            </Header>
+            <HeaderRestaurant/>
             <Content>
-                <Menu>
-                    <MenuItem>
-                        <MdHome color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Página Inicial</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
-                        <MdDirectionsBike color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/deliverypersons">Entregadores</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
-                        <MdRestaurantMenu color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/category">Categorias</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
-                        <MdRestaurantMenu color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/extra">Extra</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
-                        <MdAttachMoney color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/finances">Financeiro</Link></Span>
-                    </MenuItem>
-                </Menu>
+                <MenuRestaurant/>
                 <OrderContent>
                     <OrderList>
                         <OrderTitle>Pedidos em Espera</OrderTitle>
@@ -118,7 +91,7 @@ export default function HomeRestaurant() {
                             </OrderItem>
                         )))}
                     </OrderList>
-                    <Footer>Voila © Todos direitos reservados</Footer>
+                    <FooterComponent/>
                 </OrderContent>
             </Content>
         </Container>

@@ -9,6 +9,7 @@ import 'react-notifications/lib/notifications.css';
 import InputCurrency from "../../../../components/InputCurrency";
 import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import MenuRestaurant from "../../../../components/MenuRestaurant";
+import FooterComponent from "../../../../components/Footer";
 
 export default function ExtraCreateRestaurant() {
 
@@ -104,6 +105,7 @@ export default function ExtraCreateRestaurant() {
                         <Input type="file" id="inputPicture" className="form-control-file" onChange={e => sendFile(e)} accept="image/png, image/jpeg" />
                     </Form>
                     <Button onClick={() => {save()}} type="button">Cadastrar</Button>
+                    <FooterComponent/>
                 </Container>
             </Content>
             <NotificationContainer/>
