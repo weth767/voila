@@ -1,6 +1,8 @@
 package br.com.voila.backend.voilabackend.controller;
 
 import br.com.voila.backend.voilabackend.dto.OrderDTO;
+import br.com.voila.backend.voilabackend.enums.OrderStatusEnum;
+import br.com.voila.backend.voilabackend.enums.StateEnum;
 import br.com.voila.backend.voilabackend.mapper.OrderMapper;
 import br.com.voila.backend.voilabackend.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +46,11 @@ public class OrderController {
     @GetMapping("/page")
     public ResponseEntity<Page<OrderDTO>> findAll(Pageable pageable) {
         return ResponseEntity.ok(orderService.findAll(pageable));
+    }
+
+    @GetMapping("/{statusEnum}")
+    public ResponseEntity<List<OrderDTO>> findAllByStatus(@PathVariable OrderStatusEnum statusEnum) {
+        return ResponseEntity.ok(orderService.findAllByStatus(statusEnum));
     }
 
     @GetMapping
