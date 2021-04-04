@@ -26,7 +26,6 @@ import axios from 'axios';
 import { MAX_SIZE_FILE, PATH } from '../../../../utils/Consts';
 import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
-import InputMask from 'react-input-mask';
 import InputCurrency from "../../../../components/InputCurrency";
 
 export default function ExtraCreateRestaurant() {
@@ -46,7 +45,7 @@ export default function ExtraCreateRestaurant() {
                  "Erro", 1000);
             return false;
         }
-        if(isActive === "" || isActive == null){
+        if(isActive === "" || isActive === null){
             NotificationManager.error("Erro o campo 'Ativo' é obrigatório",
                  "Erro", 1000);
             return false;
@@ -97,6 +96,11 @@ export default function ExtraCreateRestaurant() {
        
     }
 
+    const handleChange = (event, value, maskedValue) => {
+        event.preventDefault();
+        setPrice(value);
+    };
+
     return (
         <Container>
             <Header>
@@ -144,7 +148,7 @@ export default function ExtraCreateRestaurant() {
                         </Select>
                     </Form>
                     <Form>
-                        <InputCurrency onChange={e => setPrice(e.target.value)}
+                        <InputCurrency handleChange={handleChange}
                                    placeholder="Digite o valor do extra"/>
                         <Input type="file" id="inputPicture" className="form-control-file" onChange={e => sendFile(e)} accept="image/png, image/jpeg" />
                     </Form>

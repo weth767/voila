@@ -181,7 +181,6 @@ export const Form = styled.form`
       color: var(--color-red);
       font-family: 'Londrina Solid', sans-serif;
     }
-
     :focus {
       border-color: var(--color-red);
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--color-red);

@@ -15,14 +15,10 @@ const currencyConfig = {
     },
 };
 
-const InputCurrency = () => {
-    const handleChange = (event, value, maskedValue) => {
-        event.preventDefault();
-    };
-
+const InputCurrency = (props) => {
     return(
         <IntlCurrencyInput currency="BRL" config={currencyConfig}
-                           onChange={handleChange} />
+                           onChange={props.handleChange} />
     );
 }
 

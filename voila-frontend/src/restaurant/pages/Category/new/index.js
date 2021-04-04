@@ -115,7 +115,7 @@ export default function CategoryCreateRestaurant() {
                     <Button onClick={() => {save()}} type="button">Cadastrar</Button>
                 </Container>
             </Content>
-            <NotificationContainer></NotificationContainer>
+            <NotificationContainer/>
         </Container>
     );
 }
