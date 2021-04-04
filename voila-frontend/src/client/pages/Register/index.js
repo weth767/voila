@@ -10,6 +10,7 @@ import {
     NotificationManager,
 } from "react-notifications";
 import {Link} from "react-router-dom";
+import InputMask from "react-input-mask";
 
 export default function Home() {
     const stateList = STATES.map((state,i) =>
@@ -204,7 +205,9 @@ export default function Home() {
                 <Logo src={LogoImage}/>
                 <Title>Cadastre-se</Title>
                 <Container>
-                    <Input type={"text"} onChange={e => setCpf(e.target.value)} placeholder={"Digite o CPF"}/>
+                    <InputMask className={'input-mask'} mask="999.999.999-99"
+                               onChange={e => setCpf(e.target.value.replace(".", '').replace(".", '')
+                                   .replace('-', ''))} placeholder={"Digite o CPF"}/>
                     <Input type={"text"} onChange={e => setName(e.target.value)} placeholder={"Digite seu Nome"}/>
                 </Container>
                 <Container>

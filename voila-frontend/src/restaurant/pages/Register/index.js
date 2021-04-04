@@ -10,6 +10,7 @@ import {
     NotificationManager,
 } from "react-notifications";
 import {Link} from "react-router-dom";
+import InputMask from "react-input-mask";
 
 export default function RegisterRestaurant() {
 
@@ -194,7 +195,9 @@ export default function RegisterRestaurant() {
                 <Logo src={LogoImage}/>
                 <Title>Cadastre seu Restaurante</Title>
                 <Container>
-                    <Input type={"text"} onChange={e => setCnpj(e.target.value)} placeholder={"Digite o CNPJ"}/>
+                    <InputMask className={'input-mask'} mask="99.999.999/9999-99"
+                               onChange={e => setCnpj(e.target.value.replace(".", '').replace(".", '')
+                                   .replace('-', ''))} placeholder={"Digite o CNPJ"}/>
                     <Input type={"text"} onChange={e => setName(e.target.value)} placeholder={"Digite o Nome do Restaurante"}/>
                 </Container>
                 <Container>
