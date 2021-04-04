@@ -84,6 +84,7 @@ public class RestaurantService {
                 .orElseThrow(() -> new ParametrizedMessageException("Email ou senha incorretos"));
         AccountDTO accountDTO = accountMapper.toDTO(account);
         accountDTO.setPassword(null);
+        accountDTO.setRestaurantId(account.getPerson().getPersonLegal().getRestaurant().getId());
         return accountDTO;
     }
 }

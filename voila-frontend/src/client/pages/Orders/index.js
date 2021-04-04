@@ -17,7 +17,8 @@ import { GiHamburger } from 'react-icons/gi';
 import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../assets/user.png';
 import LogoImage from '../../../assets/voila_logo2.png';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Orders() {
     function logout() {
@@ -35,6 +36,7 @@ export default function Orders() {
 
     return (
         <Container>
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
             <Header>
                 <img alt="Imagem de logo" src={LogoImage}/>
                 <Title>VOILÀ</Title>

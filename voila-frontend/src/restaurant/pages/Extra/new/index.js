@@ -20,13 +20,14 @@ import { MdAttachMoney, MdDirectionsBike, MdHome, MdRestaurantMenu } from 'react
 import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../../assets/user.png';
 import LogoImage from '../../../../assets/voila_logo2.png';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
 import { MAX_SIZE_FILE, PATH } from '../../../../utils/Consts';
 import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
 import InputCurrency from "../../../../components/InputCurrency";
+import { useSelector } from 'react-redux';
 
 export default function ExtraCreateRestaurant() {
 
@@ -103,6 +104,7 @@ export default function ExtraCreateRestaurant() {
 
     return (
         <Container>
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
             <Header>
                 <img alt="Imagem de logo" src={LogoImage}/>
                 <Title>VOILÀ</Title>

@@ -30,4 +30,7 @@ public class PersonLegal {
     @JoinColumn(name = "person_id")
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Person person;
+
+    @OneToOne(mappedBy = "personLegal",cascade = CascadeType.ALL)
+    private Restaurant restaurant;
 }

@@ -39,4 +39,7 @@ public class Person {
 
     @OneToOne(mappedBy = "person",cascade = CascadeType.ALL)
     private Address address;
+
+    @OneToOne(mappedBy = "person",cascade = CascadeType.ALL)
+    private PersonLegal personLegal;
 }
