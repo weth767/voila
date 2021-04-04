@@ -26,6 +26,8 @@ import axios from 'axios';
 import { MAX_SIZE_FILE, PATH } from '../../../../utils/Consts';
 import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
+import InputMask from 'react-input-mask';
+import InputCurrency from "../../../../components/InputCurrency";
 
 export default function ExtraCreateRestaurant() {
 
@@ -142,7 +144,8 @@ export default function ExtraCreateRestaurant() {
                         </Select>
                     </Form>
                     <Form>
-                        <Input type={"number"} onChange={e => setPrice(e.target.value)} placeholder={"Digite o valor do extra"}/>
+                        <InputCurrency onChange={e => setPrice(e.target.value)}
+                                   placeholder="Digite o valor do extra"/>
                         <Input type="file" id="inputPicture" className="form-control-file" onChange={e => sendFile(e)} accept="image/png, image/jpeg" />
                     </Form>
                     <Button onClick={() => {save()}} type="button">Cadastrar</Button>
