@@ -11,8 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,4 +33,7 @@ public class Restaurant {
 
     @Column(name = "is_open")
     private Boolean open;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<Item> items = new ArrayList<>();
 }

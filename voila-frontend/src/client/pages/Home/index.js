@@ -9,7 +9,7 @@ import {
     Title,
     User, UserSpan, Showroom, Card
 } from './styles';
-import { MdHome, MdAttachMoney } from 'react-icons/md';
+import { MdHome } from 'react-icons/md';
 import { GiHamburger } from 'react-icons/gi';
 import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../assets/user.png';
@@ -77,7 +77,8 @@ export default function Home() {
                         {resturants.map(restaurant => (
                             <Card key={restaurant.id} onClick={() => viewRestaurant(restaurant.id)}>
                                 {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-                                <img src={LogoRestaurant}
+                                <img src={restaurant.personLegal.person.image ?
+                                    'data:image/png;base64,' + restaurant.personLegal.person.image : LogoRestaurant}
                                      alt={`${restaurant.personLegal.person.name} image`}/>
                                 <span>{restaurant.personLegal.person.name}</span>
                                 <p>{restaurant.open ? 'Aberto': 'Fechado'}</p>
