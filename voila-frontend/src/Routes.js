@@ -26,7 +26,6 @@ export default function Routes() {
                 <Route path="/client/register" component={Register}/>
                 <Route path="/client/recovery" component={ResetPassword}/>
                 <Route path="/client/orders" component={Orders}/>
-                <Route path="/client/finances" component={Finances}/>
                 <Route path="/client/restaurant/:id" component={Restaurant}/>
                 {/*Restaurant routes*/}
                 <Route path="/restaurant/register" component={RegisterRestaurant}/>
@@ -36,6 +35,8 @@ export default function Routes() {
                 <Route path="/restaurant/category-new" component={CategoryCreateRestaurant}/>
                 <Route path="/restaurant/extra" component={ExtraRestaurant}/>
                 <Route path="/restaurant/extra-new" component={ExtraCreateRestaurant}/>
+                <Route path="/restaurant/orders" component={Orders}/>
+                <Route path="/restaurant/finances" component={Finances}/>
             </Switch>
         </BrowserRouter>
     )

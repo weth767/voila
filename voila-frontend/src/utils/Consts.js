@@ -2,6 +2,29 @@ export const PATH = "http://localhost:9092";
 
 export const MAX_SIZE_FILE = 16000000;
 
+export const STATUS_ORDERS = [
+    {
+        "id": "AT_WAITING_FOR",
+        "name": "Aguardando aprovação"
+    },
+    {
+        "id": "IN_PROCESS",
+        "name": "Em produção"
+    },
+    {
+        "id": "READY_TO_DELIVER",
+        "name": "Pronto para entrega",
+    },
+    {
+        "id": "OUT_TO_DELIVER",
+        "name": "Saiu para entrega",
+    },
+    {
+        "id": "DELIVERED",
+        "name": "Entregue",
+    },
+];
+
 export const STATES = [
     {
         "id": "ACRE",

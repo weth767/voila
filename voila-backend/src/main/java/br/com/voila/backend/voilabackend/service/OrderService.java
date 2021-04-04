@@ -1,6 +1,7 @@
 package br.com.voila.backend.voilabackend.service;
 
 import br.com.voila.backend.voilabackend.dto.OrderDTO;
+import br.com.voila.backend.voilabackend.enums.OrderStatusEnum;
 import br.com.voila.backend.voilabackend.exception.ParametrizedMessageException;
 import br.com.voila.backend.voilabackend.mapper.OrderMapper;
 import br.com.voila.backend.voilabackend.model.Order;
@@ -30,6 +31,13 @@ public class OrderService {
     @Transactional(readOnly=true)
     public List<OrderDTO> findAll() {
         return orderRepository.findAll()
+                .stream()
+                .map(orderMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<OrderDTO> findAllByStatus(OrderStatusEnum status) {
+        return orderRepository.findAllByStatus(status)
                 .stream()
                 .map(orderMapper::toDTO)
                 .collect(Collectors.toList());

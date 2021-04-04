@@ -12,7 +12,7 @@ import {
     User,
     UserSpan
 } from './styles';
-import { MdAttachMoney, MdHome } from 'react-icons/md';
+import { MdHome } from 'react-icons/md';
 import { GiHamburger } from 'react-icons/gi';
 import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../assets/user.png';

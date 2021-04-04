@@ -1,6 +1,7 @@
 package br.com.voila.backend.voilabackend.model;
 
 
+import br.com.voila.backend.voilabackend.enums.OrderStatusEnum;
 import br.com.voila.backend.voilabackend.enums.PaymentTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 @Getter
 @Setter
 public class Order {
@@ -22,7 +23,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "datetime")
+    @Column(name = "date_time")
     @NotNull
     private LocalDate dateTime;
 
@@ -33,7 +34,7 @@ public class Order {
     @Column(name = "need_exchange")
     private Boolean needExchange;
 
-    @Column(name = "exchange")
+    @Column(name = "exchange_value")
     private BigDecimal exchange;
 
     @Column(name = "payment_type")
@@ -56,8 +57,12 @@ public class Order {
 
     @ManyToMany
     @JoinTable(name = "order_item",
-            joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn(name = "item_id")}
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id")
     )
     private List<Item> items;
+
+    @Column(name = "status_order")
+    @Enumerated(EnumType.ORDINAL)
+    private OrderStatusEnum status;
 }

@@ -1,33 +1,32 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import {
+    Button,
     Container,
-    Content, 
-    Header, Menu,
+    Content,
+    Form,
+    Header,
+    Input,
+    Menu,
     MenuItem,
     Options,
-    Title,
-    User, UserSpan,
-    Button,
-    Input,
-    Form,
     Select,
+    Span,
+    Title,
     TitleForm,
-    Span
+    User,
+    UserSpan
 } from './styles';
-import { MdHome, MdDirectionsBike, MdRestaurantMenu, MdAttachMoney } from 'react-icons/md';
-import { GiHamburger } from 'react-icons/gi';
+import { MdAttachMoney, MdDirectionsBike, MdHome, MdRestaurantMenu } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../../assets/user.png';
 import LogoImage from '../../../../assets/voila_logo2.png';
 import { Link, useHistory } from 'react-router-dom';
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
-import { PATH,MAX_SIZE_FILE } from '../../../../utils/Consts';
-import {
-    NotificationContainer,
-    NotificationManager,
-} from "react-notifications";
+import { MAX_SIZE_FILE, PATH } from '../../../../utils/Consts';
+import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
+import InputCurrency from "../../../../components/InputCurrency";
 
 export default function ExtraCreateRestaurant() {
 
@@ -46,7 +45,7 @@ export default function ExtraCreateRestaurant() {
                  "Erro", 1000);
             return false;
         }
-        if(isActive === "" || isActive == null){
+        if(isActive === "" || isActive === null){
             NotificationManager.error("Erro o campo 'Ativo' é obrigatório",
                  "Erro", 1000);
             return false;
@@ -97,6 +96,11 @@ export default function ExtraCreateRestaurant() {
        
     }
 
+    const handleChange = (event, value, maskedValue) => {
+        event.preventDefault();
+        setPrice(value);
+    };
+
     return (
         <Container>
             <Header>
@@ -117,10 +121,6 @@ export default function ExtraCreateRestaurant() {
                         <Span><Link to="/restaurant/home">Página Inicial</Link></Span>
                     </MenuItem>
                     <MenuItem>
-                        <GiHamburger color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Pedidos</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
                         <MdDirectionsBike color={"#ff5757"} size={18}/>
                         <Span><Link to="/restaurant/home">Entregadores</Link></Span>
                     </MenuItem>
@@ -134,7 +134,7 @@ export default function ExtraCreateRestaurant() {
                     </MenuItem>
                     <MenuItem>
                         <MdAttachMoney color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Financeiro</Link></Span>
+                        <Span><Link to="/restaurant/finances">Financeiro</Link></Span>
                     </MenuItem>
                 </Menu>
                 <Container>
@@ -148,13 +148,14 @@ export default function ExtraCreateRestaurant() {
                         </Select>
                     </Form>
                     <Form>
-                        <Input type={"number"} onChange={e => setPrice(e.target.value)} placeholder={"Digite o valor do extra"}/>
+                        <InputCurrency handleChange={handleChange}
+                                   placeholder="Digite o valor do extra"/>
                         <Input type="file" id="inputPicture" className="form-control-file" onChange={e => sendFile(e)} accept="image/png, image/jpeg" />
                     </Form>
                     <Button onClick={() => {save()}} type="button">Cadastrar</Button>
                 </Container>
             </Content>
-            <NotificationContainer></NotificationContainer>
+            <NotificationContainer/>
         </Container>
     );
 }
