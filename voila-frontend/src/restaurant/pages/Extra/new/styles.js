@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import '../../../../global.css';
 
 export const Container = styled.div`
   display: flex;
@@ -71,6 +70,9 @@ export const Options = styled.button`
 export const Content = styled.div`
   height: 90vh;
   display: flex;
+  ul {
+    width: 25vw;
+  }
 `;
 
 export const Menu = styled.ul`
@@ -79,6 +81,7 @@ export const Menu = styled.ul`
   overflow-y: scroll;
   height: 92vh;
   padding: 1vh 0;
+  list-style: none;
   list-style: none;
   background-color: var(--color-lightgray);
 
@@ -103,7 +106,8 @@ export const MenuItem = styled.li`
 
 export const Button = styled.button`
   margin-top: 5vh;
-  width: 100%;
+  width: 98%;
+  margin-left: 1%;
   height: 8vh;
   border-radius: 7px;
   color: var(--color-white);
