@@ -71,12 +71,8 @@ export default function HomeRestaurant() {
                         <Span><Link to="/restaurant/home">Página Inicial</Link></Span>
                     </MenuItem>
                     <MenuItem>
-                        <GiHamburger color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Pedidos</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
                         <MdDirectionsBike color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Entregadores</Link></Span>
+                        <Span><Link to="/restaurant/deliverypersons">Entregadores</Link></Span>
                     </MenuItem>
                     <MenuItem>
                         <MdRestaurantMenu color={"#ff5757"} size={18}/>
@@ -88,7 +84,7 @@ export default function HomeRestaurant() {
                     </MenuItem>
                     <MenuItem>
                         <MdAttachMoney color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Financeiro</Link></Span>
+                        <Span><Link to="/restaurant/finances">Financeiro</Link></Span>
                     </MenuItem>
                 </Menu>
                 <OrderContent>

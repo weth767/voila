@@ -5,7 +5,26 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 92vh;
+  .table {
+    height: 80vh;
+    font-family: "Londrina Solid", sans-serif;
+    color: #FF5757;
+    button {
+      font-family: "Londrina Solid", sans-serif;
+    }
+    input {
+      font-family: "Londrina Solid", sans-serif;
+    }
+    select {
+      font-family: "Londrina Solid", sans-serif;
+    }
+    .rt-td {
+      button{
+        margin-right: 50%;
+      }
+    }
+  }
 `;
 
 export const Span = styled.span`
@@ -28,8 +47,8 @@ export const Header = styled.header`
   border-left: 1px solid white;
   height: 8vh;
   img {
-    height: 54px;
-    width: 54px;
+    height: 8vh;
+    width: 4vw;
   }
 `;
 
@@ -39,6 +58,7 @@ export const Title = styled.div`
   color: white;
   margin-right: 5vw;
   padding: 0 2vw;
+  width: 16vw;
   border-right: 1px solid white;
 `;
 
@@ -73,10 +93,10 @@ export const Content = styled.div`
 `;
 
 export const Menu = styled.ul`
-  width: 20vw;
+  width: 25vw;
   border: 1px solid var(--color-red);
   overflow-y: scroll;
-  height: 100vh;
+  height: 92vh;
   padding: 1vh 0;
   list-style: none;
   background-color: var(--color-lightgray);
@@ -100,57 +120,6 @@ export const MenuItem = styled.li`
   }
 `;
 
-export const OrderContent = styled.div`
-  display: flex;
-`;
-
-export const OrderList = styled.ul`
-  list-style: none;
-  padding: 1vh 1vw;
-  border: 1px solid var(--color-red);
-  width: 26.66vw;
-  height: 82vh;
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-export const OrderTitle = styled.li`
-  font-family: "Londrina Solid", sans-serif;
-  font-size: 2.3vw;
-  color: var(--color-red);
-`;
-
-export const OrderItem = styled.li`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border: 1px solid var(--color-red);
-  padding: 1vh 1vw;
-  margin-bottom: 1vh;
-  span {
-    font-family: "Londrina Solid", sans-serif;
-    font-weight: lighter;
-    margin-left: 1vw;
-  }
-`;
-
-export const Footer = styled.footer`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 8vh;
-  border: 1px solid var(--color-red);
-  border-left: none;
-  padding: 2vh 1vw;
-  background: var(--color-mediumgray);
-  font-family: "Londrina Solid", sans-serif;
-  font-size: 1.5vw;
-  text-align: center;
-  color: var(--color-red)
-`;
-
 export const Button = styled.button`
   margin-top: 5vh;
   width: 100%;
@@ -164,7 +133,7 @@ export const Button = styled.button`
 `;
 
 export const ContentOptions = styled.div`
-  width: 100%;
+  width: 80vw;
   display: flex;
   justify-content: space-around;
 `;

@@ -112,10 +112,6 @@ export default function ExtraRestaurant() {
                         <Span><Link to="/restaurant/home">Página Inicial</Link></Span>
                     </MenuItem>
                     <MenuItem>
-                        <GiHamburger color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Pedidos</Link></Span>
-                    </MenuItem>
-                    <MenuItem>
                         <MdDirectionsBike color={"#ff5757"} size={18}/>
                         <Span><Link to="/restaurant/home">Entregadores</Link></Span>
                     </MenuItem>
@@ -129,11 +125,11 @@ export default function ExtraRestaurant() {
                     </MenuItem>
                     <MenuItem>
                         <MdAttachMoney color={"#ff5757"} size={18}/>
-                        <Span><Link to="/restaurant/home">Financeiro</Link></Span>
+                        <Span><Link to="/restaurant/finances">Financeiro</Link></Span>
                     </MenuItem>
                 </Menu>
                 <Container>
-                    <ReactTable
+                    <ReactTable className={'table'}
                         data={data}
                         columns={columns}
                     />
