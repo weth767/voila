@@ -198,6 +198,9 @@
             <column name="need_delivery" type="bit(1)" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
+            <column name="status" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         <addForeignKeyConstraint baseTableName="order" baseColumnNames="restaurant_id"
                                  constraintName="order_restaurant" referencedTableName="restaurant"

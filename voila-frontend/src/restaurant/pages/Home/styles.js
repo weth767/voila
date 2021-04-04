@@ -77,7 +77,7 @@ export const Menu = styled.ul`
   width: 20vw;
   border: 1px solid var(--color-red);
   overflow-y: scroll;
-  height: 100vh;
+  height: 90vh;
   padding: 1vh 0;
   list-style: none;
   background-color: var(--color-lightgray);
@@ -103,6 +103,7 @@ export const MenuItem = styled.li`
 
 export const OrderContent = styled.div`
   display: flex;
+  width: 80vw;
 `;
 
 export const OrderList = styled.ul`

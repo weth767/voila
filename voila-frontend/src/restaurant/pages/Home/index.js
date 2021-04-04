@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Container,
     Content, Footer,
@@ -18,13 +18,22 @@ import { FiLogOut } from 'react-icons/fi';
 import UserImage from '../../../assets/user.png';
 import LogoImage from '../../../assets/voila_logo2.png';
 import { Link, useHistory } from 'react-router-dom';
+import axios from "axios";
 
 export default function HomeRestaurant() {
     const url = "https://images.vexels.com/media/users/3/143047/isolated/preview/b0c9678466af11dd45a62163bdcf03fe-iacute-cone-plano-de-hamb-uacute-rguer-de-fast-food-by-vexels.png";
     const history = useHistory();
+    const [orders, setOrders] = useState([]);
 
     function logout() {
         history.push('/client/login');
+    }
+
+    async function findOrders() {
+        await axios.get('/orders')
+            .then((result) => {
+                setOrders(result.data);
+            });
     }
 
     return (
