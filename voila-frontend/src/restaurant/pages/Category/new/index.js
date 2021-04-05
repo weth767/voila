@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Container, Content, Form, Input, Select, TitleForm } from './styles';
-import { useHistory } from 'react-router-dom';
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
 import { PATH } from '../../../../utils/Consts';
@@ -10,6 +9,7 @@ import 'react-notifications/lib/notifications.css';
 import MenuRestaurant from "../../../../components/MenuRestaurant";
 import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import FooterComponent from "../../../../components/Footer";
+import { useSelector } from 'react-redux';
 
 export default function CategoryCreateRestaurant() {
     const history = useHistory();

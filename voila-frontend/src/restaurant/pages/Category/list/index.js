@@ -5,22 +5,8 @@ import {
     Container,
     Content,
     ContentOptions,
-    Header,
-    Menu,
-    MenuItem,
-    Options,
-    Span,
-    Title,
-    User,
-    UserSpan
 } from './styles';
-import { MdAttachMoney, MdDirectionsBike, MdHome, MdRestaurantMenu } from 'react-icons/md';
-import { FiLogOut } from 'react-icons/fi';
-import UserImage from '../../../../assets/user.png';
-import LogoImage from '../../../../assets/voila_logo2.png';
-import { Link, Redirect, useHistory } from 'react-router-dom';
-import { Button, ButtonTable, Container, Content, ContentOptions } from './styles';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 import axios from 'axios';

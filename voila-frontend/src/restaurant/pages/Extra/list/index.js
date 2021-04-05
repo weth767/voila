@@ -10,6 +10,7 @@ import 'react-notifications/lib/notifications.css';
 import MenuRestaurant from "../../../../components/MenuRestaurant";
 import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import FooterComponent from "../../../../components/Footer";
+import { useSelector } from 'react-redux';
 
 export default function ExtraRestaurant() {
     const history = useHistory();
