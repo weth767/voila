@@ -7,8 +7,11 @@ import {Link} from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
+import { useDispatch } from 'react-redux';
 
 export default function Login() {
+    const dispatch = useDispatch()
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
