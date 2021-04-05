@@ -9,13 +9,12 @@ import java.util.List;
 @Getter
 @Setter
 public class ItemDTO {
-
     private Long id;
     private String description;
     private BigDecimal price;
     private Boolean isActive;
     private byte[] image;
     private ItemCategoryDTO itemCategory;
-    private RestaurantDTO restaurant;
+    private Long restaurantId;
     private List<ExtraDTO> extras;
 }
