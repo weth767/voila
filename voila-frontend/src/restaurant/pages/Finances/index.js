@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Content, FinanceListItem, FinanceListTitle, FinancesList, InternalContent } from './styles';
+import {
+    Container,
+    Content, DatePickerContent,
+    FinanceListItem,
+    FinanceListTitle,
+    FinancesContent,
+    FinancesList,
+    InternalContent, Label,
+    Button
+} from './styles';
 import MenuRestaurant from "../../../components/MenuRestaurant";
 import HeaderRestaurant from "../../../components/HeaderRestaurant";
 import FooterComponent from "../../../components/Footer";
@@ -7,6 +16,8 @@ import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
 import axios from "axios";
 import { PATH } from "../../../utils/Consts";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Finances() {
     const [minDate, setMinDate] = useState(new Date());
@@ -18,6 +29,18 @@ export default function Finances() {
     useEffect(() => {
         findFinances().then(() => {});
     }, []);
+
+    const datePickerOptions = {
+        offset: {
+            enabled: true,
+            offset: "5px, 10px"
+        },
+        preventOverflow: {
+            enabled: true,
+            escapeWithReference: false,
+            boundariesElement: "viewport"
+        }
+    }
 
     async function findFinances() {
         await axios.get(PATH + '/finances', {
@@ -40,33 +63,61 @@ export default function Finances() {
             <Content>
                 <MenuRestaurant/>
                 <InternalContent>
-                    <FinancesList>
-                        <FinanceListTitle>Entradas Dinheiro</FinanceListTitle>
-                        {financesMoney.map((finance) => (
-                            <FinanceListItem key={finance.id}>
-                                <span>{finance.dateTime}</span>
-                                <span>{finance.totalValue}</span>
-                            </FinanceListItem>
-                        ))}
-                    </FinancesList>
-                    <FinancesList>
-                        <FinanceListTitle>Entradas Cartão de Crédito</FinanceListTitle>
-                        {financesCreditCard.map((finance) => (
-                            <FinanceListItem key={finance.id}>
-                                <span>{finance.dateTime}</span>
-                                <span>{finance.totalValue}</span>
-                            </FinanceListItem>
-                        ))}
-                    </FinancesList>
-                    <FinancesList>
-                        <FinanceListTitle>Entradas Cartão de Debíto</FinanceListTitle>
-                        {financesDebitCard.map((finance) => (
-                            <FinanceListItem key={finance.id}>
-                                <span>{finance.dateTime}</span>
-                                <span>{finance.totalValue}</span>
-                            </FinanceListItem>
-                        ))}
-                    </FinancesList>
+                    <DatePickerContent>
+                        <Label>Data inicial: </Label>
+                        <DatePicker selected={minDate}
+                                    locale="pt-BR"
+                                    showTimeSelect
+                                    timeFormat="HH:mm"
+                                    timeIntervals={5}
+                                    dateFormat="dd/MM/yyyy - HH:mm"
+                                    popperPlacement="top-end"
+                                    popperModifiers={datePickerOptions}
+                                    placeholderText={"Selecione a data"}
+                                    onChange={date => setMinDate(date)}
+                        />
+                        <Label>Data final: </Label>
+                        <DatePicker selected={maxDate}
+                                    locale="pt-BR"
+                                    showTimeSelect
+                                    timeFormat="HH:mm"
+                                    timeIntervals={5}
+                                    dateFormat="dd/MM/yyyy - HH:mm"
+                                    placeholderText={"Selecione a data"}
+                                    popperPlacement="top-end"
+                                    popperModifiers={datePickerOptions}
+                                    onChange={date => setMaxDate(date)} />
+                        <Button onClick={() => findFinances()}>Buscar</Button>
+                    </DatePickerContent>
+                    <FinancesContent>
+                        <FinancesList>
+                            <FinanceListTitle>Entradas Dinheiro</FinanceListTitle>
+                            {financesMoney.map((finance) => (
+                                <FinanceListItem key={finance.id}>
+                                    <span>{finance.dateTime}</span>
+                                    <span>{finance.totalValue}</span>
+                                </FinanceListItem>
+                            ))}
+                        </FinancesList>
+                        <FinancesList>
+                            <FinanceListTitle>Entradas Cartão de Crédito</FinanceListTitle>
+                            {financesCreditCard.map((finance) => (
+                                <FinanceListItem key={finance.id}>
+                                    <span>{finance.dateTime}</span>
+                                    <span>{finance.totalValue}</span>
+                                </FinanceListItem>
+                            ))}
+                        </FinancesList>
+                        <FinancesList>
+                            <FinanceListTitle>Entradas Cartão de Debíto</FinanceListTitle>
+                            {financesDebitCard.map((finance) => (
+                                <FinanceListItem key={finance.id}>
+                                    <span>{finance.dateTime}</span>
+                                    <span>{finance.totalValue}</span>
+                                </FinanceListItem>
+                            ))}
+                        </FinancesList>
+                    </FinancesContent>
                     <FooterComponent/>
                 </InternalContent>
             </Content>
