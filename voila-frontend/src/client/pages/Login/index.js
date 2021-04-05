@@ -24,6 +24,13 @@ export default function Login() {
                 email: email,
                 password: password
             }}).then(res => {
+                await dispatch({
+                    type: 'LOGIN',
+                    payload: {
+                        userEmail: res.data.email,
+                        username: res.data.username,
+                    }
+                });
                 history.push('/client/home');
             }, error => {
                 return NotificationManager.error("Email ou senha incorretos",
