@@ -19,19 +19,13 @@ export default function ItemNew() {
     const [picture, setPicture] = useState();
     const [category, setCategory] = useState();
     const [restaurant, setRestaurant] = useState();
-    const [extras, setExtras] = useState();
+    const [extras, setExtras] = useState([]);
     const user = useSelector(state => state.user);
 
     const [categories, setCategories] = useState([]);
     const [extrasList, setExtrasList] = useState([]);
 
     useEffect(() => {
-        setRestaurant({
-            id: user.restaurantId,
-            personLegal: undefined,
-            isOpen: true,
-            itens: [],
-        })
         getAllCategories();
         getAllExtras();
     }, []);
@@ -77,16 +71,16 @@ export default function ItemNew() {
         if(!checkInput()){
             return;
         }
-        console.log(category);
         console.log(extras);
+        let ex = extras.map(extra => ({id: extra, description: undefined, image: undefined, isActive: true, price: 1.5}));
         await axios.post(`${PATH}/item`, {
             description:description,
             isActive:isActive,
-            extras: extras,
-            itemCategory: category,
+            extras: ex,
+            itemCategory: {id: category, name: undefined},
             price:price,
             image:picture,
-            restaurant: restaurant
+            restaurantId: user.restaurantId
         }).then(res => {
             NotificationManager.success("Item cadastrada com sucesso",
                 "Sucesso", 1000);
@@ -121,6 +115,10 @@ export default function ItemNew() {
         setPrice(value);
     };
 
+    const handleSelect = (e) => {
+        setExtras(Array.from(e.target.selectedOptions, option => Number(option.value)));
+    }
+
     return (
         <Container>
             {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
@@ -134,15 +132,15 @@ export default function ItemNew() {
                         <Select defaultValue={"category"} onChange={e => {setCategory(e.target.value)}}>
                             <option value="category" selected disabled hidden>Selecione uma Categoria</option>
                             {categories.map((categoryItem) => (
-                                <option key={categoryItem.id} value={categoryItem}>{categoryItem.name}</option>
+                                <option key={categoryItem.id} value={categoryItem.id}>{categoryItem.name}</option>
                             ))}
                         </Select>
                     </Form>
                     <Form>
-                        <Select defaultValue={"extras"} onChange={e => {setExtras(e.target.value)}} multiple>
+                        <Select defaultValue={"extras"} onChange={handleSelect} multiple>
                             <option value={"extras"} selected disabled hidden>Selecione os extras</option>
                             {extrasList.map((extraItem) => (
-                                <option key={extraItem.id} value={extraItem}>{extraItem.description}</option>
+                                <option key={extraItem.id} value={extraItem.id}>{extraItem.description}</option>
                             ))}
                         </Select>
                         <Select defaultValue={"isActive"} onChange={e => {setIsActive(e.target.value)}}>

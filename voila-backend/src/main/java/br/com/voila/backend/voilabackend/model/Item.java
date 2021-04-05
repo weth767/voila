@@ -35,11 +35,11 @@ public class Item {
     private byte[] image;
 
     @JoinColumn(name = "restaurant_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Restaurant restaurant;
 
     @JoinColumn(name = "item_category_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private ItemCategory itemCategory;
 
     @ManyToMany
