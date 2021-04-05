@@ -4,12 +4,7 @@ import br.com.voila.backend.voilabackend.enums.AccountTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -48,4 +43,7 @@ public class Account {
     @Enumerated(EnumType.ORDINAL)
     @NotNull
     private AccountTypeEnum accountType;
+
+    @OneToOne(mappedBy = "account",cascade = CascadeType.ALL)
+    private Person person;
 }

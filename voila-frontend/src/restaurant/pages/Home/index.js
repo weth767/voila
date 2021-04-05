@@ -5,6 +5,8 @@ import { PATH, STATUS_ORDERS } from "../../../utils/Consts";
 import HeaderRestaurant from "../../../components/HeaderRestaurant";
 import MenuRestaurant from "../../../components/MenuRestaurant";
 import FooterComponent from "../../../components/Footer";
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router';
 
 export default function HomeRestaurant() {
     const url = "https://images.vexels.com/media/users/3/143047/isolated/preview/b0c9678466af11dd45a62163bdcf03fe-iacute-cone-plano-de-hamb-uacute-rguer-de-fast-food-by-vexels.png";
@@ -33,6 +35,7 @@ export default function HomeRestaurant() {
 
     return (
         <Container>
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

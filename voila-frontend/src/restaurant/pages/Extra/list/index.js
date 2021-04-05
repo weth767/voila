@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ButtonTable, Container, Content, ContentOptions } from './styles';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
@@ -10,6 +10,7 @@ import 'react-notifications/lib/notifications.css';
 import MenuRestaurant from "../../../../components/MenuRestaurant";
 import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import FooterComponent from "../../../../components/Footer";
+import { useSelector } from 'react-redux';
 
 export default function ExtraRestaurant() {
     const history = useHistory();
@@ -70,6 +71,7 @@ export default function ExtraRestaurant() {
 
     return (
         <Container>
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant class={'menu'}/>

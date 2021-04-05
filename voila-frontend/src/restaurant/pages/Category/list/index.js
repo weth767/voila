@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonTable, Container, Content, ContentOptions } from './styles';
-import { useHistory } from 'react-router-dom';
+import {
+    Button,
+    ButtonTable,
+    Container,
+    Content,
+    ContentOptions,
+} from './styles';
+import { Redirect, useHistory } from 'react-router-dom';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
 import { PATH } from '../../../../utils/Consts';
 import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
+import { useSelector } from 'react-redux';
 import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import MenuRestaurant from "../../../../components/MenuRestaurant";
 import FooterComponent from "../../../../components/Footer";
@@ -66,6 +73,7 @@ export default function CategoryRestaurant() {
 
     return (
         <Container>
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

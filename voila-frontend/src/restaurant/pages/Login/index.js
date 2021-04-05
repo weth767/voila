@@ -9,17 +9,28 @@ import {
     NotificationManager,
 } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
+import { useDispatch } from 'react-redux';
 
 export default function LoginRestaurant() {
+    const dispatch = useDispatch()
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    
 
     async function login() {
         await axios.get(`${PATH}/restaurant/login`, {params: {
             email: email,
             password: password
-        }}).then(res => {
-            console.log(res);
+        }}).then(async res => {
+            await dispatch({
+                type: 'LOGIN',
+                payload: {
+                    userEmail: res.data.email,
+                    username: res.data.username,
+                    restaurantId: res.data.restaurantId
+                }
+            });
         }).catch(err =>{
             return NotificationManager.error("Email ou senha incorretos",
                  "Erro", 1000);

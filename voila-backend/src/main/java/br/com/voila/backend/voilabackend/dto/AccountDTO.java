@@ -9,4 +9,5 @@ public class AccountDTO {
     private String email;
     private String username;
     private String password;
+    private Long restaurantId;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Container, Content, Form, Input, Select, TitleForm } from './styles';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
 import { MAX_SIZE_FILE, PATH } from '../../../../utils/Consts';
@@ -10,6 +10,7 @@ import InputCurrency from "../../../../components/InputCurrency";
 import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import MenuRestaurant from "../../../../components/MenuRestaurant";
 import FooterComponent from "../../../../components/Footer";
+import { useSelector } from 'react-redux';
 
 export default function ExtraCreateRestaurant() {
     const history = useHistory();
@@ -82,6 +83,7 @@ export default function ExtraCreateRestaurant() {
 
     return (
         <Container>
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>
