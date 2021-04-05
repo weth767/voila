@@ -79,6 +79,8 @@ export default function CategoryRestaurant() {
                 <MenuRestaurant/>
                 <Container>
                     <ReactTable className={'table'}
+                                previousText={'Anterior'}
+                                nextText={'Próximo'}
                                 data={data}
                                 columns={columns}
                     />

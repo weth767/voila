@@ -20,8 +20,9 @@ export const Container = styled.div`
       font-family: "Londrina Solid", sans-serif;
     }
     .rt-td {
+      text-align: center;
       button{
-        margin-right: 50%;
+        margin-right: 52vw;
       }
     }
   }

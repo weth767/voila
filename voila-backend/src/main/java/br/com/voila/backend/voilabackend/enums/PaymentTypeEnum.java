@@ -2,6 +2,6 @@ package br.com.voila.backend.voilabackend.enums;
 
 public enum PaymentTypeEnum {
     MONEY,
-    CREDID_CARD,
+    CREDIT_CARD,
     DEBIT_CARD,
 }

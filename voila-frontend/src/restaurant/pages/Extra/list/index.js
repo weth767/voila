@@ -77,6 +77,8 @@ export default function ExtraRestaurant() {
                 <MenuRestaurant class={'menu'}/>
                 <Container>
                     <ReactTable className={'table'}
+                                previousText={'Anterior'}
+                                nextText={'Próximo'}
                                 data={data}
                                 columns={columns}
                     />
@@ -84,7 +86,7 @@ export default function ExtraRestaurant() {
                 </Container>
                 <FooterComponent/>
             </Content>
-            <NotificationContainer></NotificationContainer>
+            <NotificationContainer/>
         </Container>
     );
 }

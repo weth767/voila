@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class Order {
 
     @Column(name = "date_time")
     @NotNull
-    private LocalDate dateTime;
+    private LocalDateTime dateTime;
 
     @Column(name = "total_value")
     @NotNull
