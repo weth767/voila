@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/item")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ItemController {
     private static final String URL = "/item";
     private final ItemService itemService;

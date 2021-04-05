@@ -1,45 +1,64 @@
 import styled from 'styled-components';
+import '../../../../global.css';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 92vh;
+  .table {
+    height: 72vh;
+    font-family: "Londrina Solid", sans-serif;
+    color: #FF5757;
+    button {
+      font-family: "Londrina Solid", sans-serif;
+    }
+    input {
+      font-family: "Londrina Solid", sans-serif;
+    }
+    select {
+      font-family: "Londrina Solid", sans-serif;
+    }
+    .rt-td {
+      text-align: center;
+      button{
+        margin-right: 50%;
+      }
+    }
+  }
 `;
 
 export const Content = styled.div`
   height: 90vh;
   display: flex;
+  ul {
+    width: 25vw;
+  }
 `;
 
-export const InternalContent = styled.div`
-  display: flex;
+export const Button = styled.button`
+  margin-top: 5vh;
+  width: 100%;
+  height: 8vh;
+  border-radius: 7px;
+  color: var(--color-white);
+  background-color: var(--color-red);
+  font-family: 'Londrina Solid', sans-serif;
+  border-color: var(--color-red);
+  font-size: 1.5vw;
+`;
+
+export const ContentOptions = styled.div`
   width: 80vw;
-  height: 80vh;
+  display: flex;
+  justify-content: space-around;
 `;
 
-export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 2px solid var(--color-red);
-  margin: 1vh 2vw;
-  position: relative;
-  img {
-    width: 15vw; 
-    opacity: 0.6;
-  }
-  span {
-    position: absolute;
-    width: 100%;
-    margin-top: 0.5vh;
-    text-align: center;
-    font-family: "Londrina Solid", sans-serif;
-  }
-  p {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-family: "Londrina Solid", sans-serif;
-  }
+export const ButtonTable = styled.button`
+  border-radius: 7px;
+  color: var(--color-white);
+  background-color: var(--color-red);
+  font-family: 'Londrina Solid', sans-serif;
+  border-color: var(--color-red);
+  font-size: 1.5vw;
 `;

@@ -71,7 +71,7 @@ export default function ExtraRestaurant() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant class={'menu'}/>
@@ -81,10 +81,14 @@ export default function ExtraRestaurant() {
                                 nextText={'Próximo'}
                                 data={data}
                                 columns={columns}
+                                pageText={"Página"}
+                                rowsText={"Linhas"}
+                                ofText={"de "}
+                                noDataText={"Não há registros a listar"}
                     />
                     <Button onClick={() => createExtra()} type="button">Cadastrar Novo Extra</Button>
+                    <FooterComponent/>
                 </Container>
-                <FooterComponent/>
             </Content>
             <NotificationContainer/>
         </Container>

@@ -83,7 +83,7 @@ export default function ExtraCreateRestaurant() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

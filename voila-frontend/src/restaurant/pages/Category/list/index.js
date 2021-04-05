@@ -83,6 +83,10 @@ export default function CategoryRestaurant() {
                                 nextText={'Próximo'}
                                 data={data}
                                 columns={columns}
+                                pageText={"Página"}
+                                rowsText={"Linhas"}
+                                ofText={"de "}
+                                noDataText={"Não há registros a listar"}
                     />
                     <Button onClick={() => createCategory()} type="button">Cadastrar Nova Categoria</Button>
                     <FooterComponent/>
