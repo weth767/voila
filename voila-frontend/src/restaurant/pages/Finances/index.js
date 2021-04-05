@@ -21,7 +21,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function Finances() {
     const [minDate, setMinDate] = useState(new Date());
-    const [maxDate, setMaxDate] = useState(new Date());
+    const [maxDate, setMaxDate] = useState(new Date(new Date().getTime() + (24 * 60 * 60 * 1000)));
     const [financesCreditCard, setFinancesCreditCard] = useState([]);
     const [financesDebitCard, setFinancesDebitCard] = useState([]);
     const [financesMoney, setFinancesMoney] = useState([]);

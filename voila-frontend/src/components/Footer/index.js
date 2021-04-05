@@ -3,7 +3,7 @@ import { Footer } from './styles';
 
 export default function FooterComponent() {
     return (
-        <Footer>Voila © Todos direitos reservados</Footer>
+        <Footer>Voilà © Todos direitos reservados</Footer>
     );
 }
 

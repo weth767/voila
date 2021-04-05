@@ -1,38 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Button,
-    ButtonTable,
-    Container,
-    Content,
-    ContentOptions,
-} from './styles';
-import { Redirect, useHistory } from 'react-router-dom';
-import ReactTable from 'react-table-v6'
-import 'react-table-v6/react-table.css'
-import axios from 'axios';
-import { PATH } from '../../../../utils/Consts';
-import { NotificationContainer, NotificationManager, } from "react-notifications";
-import 'react-notifications/lib/notifications.css';
-import { useSelector } from 'react-redux';
-import HeaderRestaurant from "../../../../components/HeaderRestaurant";
+import { Button, ButtonTable, Container, Content, ContentOptions } from './styles';
 import MenuRestaurant from "../../../../components/MenuRestaurant";
+import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import FooterComponent from "../../../../components/Footer";
+import axios from "axios";
+import { PATH } from "../../../../utils/Consts";
+import { NotificationContainer, NotificationManager } from "react-notifications";
+import { useHistory } from "react-router";
+import ReactTable from "react-table-v6";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-export default function CategoryRestaurant() {
+export default function ItemList() {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false);
-    const [data, setData] = useState([]);
+    const [items, setItems] = useState([]);
 
     const columns = [
         {
-            Header: 'Nome',
-            accessor: 'name'
+            Header: 'Descrição',
+            accessor: 'description'
+        },
+        {
+            Header: 'Preço',
+            accessor: 'price'
+        },
+        {
+            Header: 'Categoria',
+            accessor: 'itemCategory.description'
         },
         {
             Header: 'Opções',
             Cell: row => (
                 <ContentOptions>
-                    <ButtonTable onClick={() => {deleteCategory(row.original.id)}}>Apagar</ButtonTable>
+                    <ButtonTable onClick={() => {deleteItem(row.original.id)}}>Apagar</ButtonTable>
                 </ContentOptions>
             )
         }
@@ -46,49 +47,49 @@ export default function CategoryRestaurant() {
     },[isLoaded]);
 
     async function search() {
-        await axios.get(`${PATH}/item-category/page`)
+        await axios.get(`${PATH}/item/page`)
             .then(res => {
-                setData(res.data.content);
+                setItems(res.data.content);
                 setIsLoaded(true);
             }).catch(err =>{
                 setIsLoaded(true);
-                return NotificationManager.error("Erro ao buscar categoria",
+                return NotificationManager.error("Erro ao buscar Extras",
                     "Erro", 1000);
             });
     }
 
-    function createCategory() {
-        history.push('/restaurant/category-new');
+    function createItem() {
+        history.push('/restaurant/item-new');
     }
 
-    async function deleteCategory(id) {
-        await axios.delete(`${PATH}/item-category/${id}`)
+    async function deleteItem(id) {
+        await axios.delete(`${PATH}/item/${id}`)
             .then(res => {
                 search();
             }).catch(err =>{
-                return NotificationManager.error("Erro ao apagar categoria",
+                return NotificationManager.error("Erro ao apagar o item",
                     "Erro", 1000);
             });
     }
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
             <HeaderRestaurant/>
             <Content>
-                <MenuRestaurant/>
+                <MenuRestaurant class={'menu'}/>
                 <Container>
                     <ReactTable className={'table'}
                                 previousText={'Anterior'}
                                 nextText={'Próximo'}
-                                data={data}
+                                data={items}
                                 columns={columns}
                                 pageText={"Página"}
                                 rowsText={"Linhas"}
                                 ofText={"de "}
                                 noDataText={"Não há registros a listar"}
                     />
-                    <Button onClick={() => createCategory()} type="button">Cadastrar Nova Categoria</Button>
+                    <Button onClick={() => createItem()} type="button">Cadastrar Novo Item</Button>
                     <FooterComponent/>
                 </Container>
             </Content>
