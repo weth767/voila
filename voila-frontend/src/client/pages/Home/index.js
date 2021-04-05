@@ -1,19 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Container,
-    Content, Footer,
-    Header, Menu,
-    MenuItem,
-    Options,
-    InternalContent,
-    Title,
-    User, UserSpan, Showroom, Card
-} from './styles';
-import { MdHome } from 'react-icons/md';
-import { GiHamburger } from 'react-icons/gi';
-import { FiLogOut } from 'react-icons/fi';
-import UserImage from '../../../assets/user.png';
-import LogoImage from '../../../assets/voila_logo2.png';
+import { Card, Container, Content, InternalContent, Showroom } from './styles';
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import { PATH } from "../../../utils/Consts";

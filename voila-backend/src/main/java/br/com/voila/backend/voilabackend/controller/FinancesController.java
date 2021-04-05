@@ -20,8 +20,8 @@ public class FinancesController {
     private final FinancesService financesService;
 
     @GetMapping
-    public List<FinanceDTO> findByDates(@RequestParam("minDate") LocalDateTime minDate,
-                                        @RequestParam("maxDate") LocalDateTime maxDate) {
+    public List<FinanceDTO> findByDates(@RequestParam("minDate") String minDate,
+                                        @RequestParam("maxDate") String maxDate) {
         return financesService.findByDate(minDate, maxDate);
     }
 }
