@@ -3,7 +3,7 @@ import {Banner, Button, Container, ContainerFlex, Form, Input, Logo, Span, Title
 import { PATH } from '../../../utils/Consts';
 import axios from 'axios';
 import LogoImage from '../../../assets/voila_logo.png';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {
     NotificationContainer,
     NotificationManager,
@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 
 export default function LoginRestaurant() {
     const dispatch = useDispatch()
+    const history = useHistory();
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,6 +32,7 @@ export default function LoginRestaurant() {
                     restaurantId: res.data.restaurantId
                 }
             });
+            history.push('/restaurant/home');
         }).catch(err =>{
             return NotificationManager.error("Email ou senha incorretos",
                  "Erro", 1000);
