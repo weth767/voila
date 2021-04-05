@@ -23,7 +23,7 @@ export default function Login() {
         await axios.get(`${PATH}/client/login`, {params: {
                 email: email,
                 password: password
-            }}).then(res => {
+            }}).then(async res => {
                 await dispatch({
                     type: 'LOGIN',
                     payload: {
