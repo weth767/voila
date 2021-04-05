@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   height: 92vh;
   .table {
-    height: 80vh;
+    height: 72vh;
     font-family: "Londrina Solid", sans-serif;
     color: #FF5757;
     button {
@@ -90,33 +90,11 @@ export const Options = styled.button`
 export const Content = styled.div`
   height: 90vh;
   display: flex;
-`;
-
-export const Menu = styled.ul`
-  width: 25vw;
-  border: 1px solid var(--color-red);
-  overflow-y: scroll;
-  height: 92vh;
-  padding: 1vh 0;
-  list-style: none;
-  background-color: var(--color-lightgray);
-
-  ::-webkit-scrollbar {
-    display: none;
+  ul {
+    width: 25vw !important;
   }
-`;
-
-export const MenuItem = styled.li`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-bottom: 1px solid var(--color-red);
-  border-top: 1px solid var(--color-red);
-  padding: 2vh 1vw;
-  span {
-    margin-left: 1vw;
-    font-family: "Londrina Solid", sans-serif;
-    color: var(--color-red);
+  footer {
+    margin-left: 20vw;
   }
 `;
 
@@ -137,6 +115,7 @@ export const ContentOptions = styled.div`
   display: flex;
   justify-content: space-around;
 `;
+
 export const ButtonTable = styled.button`
   border-radius: 7px;
   color: var(--color-white);
