@@ -18,13 +18,13 @@ import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import { PATH } from "../../../utils/Consts";
 import LogoRestaurant from '../../../assets/restaurant.png';
+import HeaderClient from "../../../components/HeaderClient";
+import MenuClient from "../../../components/MenuClient";
+import FooterComponent from "../../../components/Footer";
 
 export default function Home() {
     const history = useHistory();
     const [resturants, setRestaurants] = useState([]);
-    function logout() {
-        history.push('/client/login');
-    }
 
     useEffect(() => {
         findResturants().then(() => {});
@@ -40,38 +40,11 @@ export default function Home() {
         history.push(`/client/restaurant/${id}`);
     }
 
-    function toHome() {
-        history.push('/client/home');
-    }
-
-    function toOrders() {
-        history.push('/client/orders');
-    }
-
     return (
         <Container>
-            <Header>
-                <img alt="Imagem de logo" src={LogoImage}/>
-                <Title>VOILÀ</Title>
-                <User>
-                    <img alt="Imagem de logo" src={UserImage}/>
-                    <UserSpan>Usuario</UserSpan>
-                    <Options>
-                        <FiLogOut size={32} color={'#fff'} onClick={() => logout()}/>
-                    </Options>
-                </User>
-            </Header>
+            <HeaderClient/>
             <Content>
-                <Menu>
-                    <MenuItem onClick={() => toHome()}>
-                        <MdHome color={"#ff5757"} size={18}/>
-                        <span>Página Inicial</span>
-                    </MenuItem>
-                    <MenuItem onClick={() => toOrders()}>
-                        <GiHamburger color={"#ff5757"} size={18}/>
-                        <span>Pedidos</span>
-                    </MenuItem>
-                </Menu>
+                <MenuClient/>
                 <InternalContent>
                     <Showroom>
                         {resturants.map(restaurant => (
@@ -85,7 +58,7 @@ export default function Home() {
                             </Card>
                         ))}
                     </Showroom>
-                    <Footer>Voila © Todos direitos reservados</Footer>
+                    <FooterComponent/>
                 </InternalContent>
             </Content>
         </Container>

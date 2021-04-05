@@ -1,33 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Container,
-    Content,
-    Footer,
-    Header,
-    HeaderImage,
-    InternalContent,
-    Options,
-    Title,
-    User,
-    UserSpan
-} from './styles';
-import { FiLogOut } from 'react-icons/fi';
-import UserImage from '../../../assets/user.png';
-import LogoImage from '../../../assets/voila_logo2.png';
+import { Container, Content, HeaderImage, InternalContent } from './styles';
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import { PATH } from "../../../utils/Consts";
 import LogoRestaurant from '../../../assets/restaurant.png';
 import { Showroom } from "../Orders/styles";
+import HeaderClient from "../../../components/HeaderClient";
+import FooterComponent from "../../../components/Footer";
 
 export default function Restaurant({ match }) {
     const history = useHistory();
     const params = match.params;
     const [restaurant, setRestaurant] = useState(undefined);
-
-    function logout() {
-        history.push('/client/login');
-    }
 
     useEffect(() => {
         findResturant().then(() => {});
@@ -47,17 +31,7 @@ export default function Restaurant({ match }) {
 
     return (
         <Container>
-            <Header>
-                <img alt="Imagem de logo" src={LogoImage}/>
-                <Title>VOILÀ</Title>
-                <User>
-                    <img alt="Imagem de logo" src={UserImage}/>
-                    <UserSpan>Usuario</UserSpan>
-                    <Options>
-                        <FiLogOut size={32} color={'#fff'} onClick={() => logout()}/>
-                    </Options>
-                </User>
-            </Header>
+            <HeaderClient/>
             <Content>
                 <InternalContent>
                     <HeaderImage>
@@ -79,7 +53,7 @@ export default function Restaurant({ match }) {
                         {/*    </Card>*/}
                         {/*)): null}*/}
                     </Showroom>
-                    <Footer>Voila © Todos direitos reservados</Footer>
+                    <FooterComponent/>
                 </InternalContent>
             </Content>
         </Container>
