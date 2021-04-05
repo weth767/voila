@@ -196,7 +196,7 @@ export default function RegisterRestaurant() {
                 <Title>Cadastre seu Restaurante</Title>
                 <Container>
                     <InputMask className={'input-mask'} mask="99.999.999/9999-99"
-                               onChange={e => setCnpj(e.target.value.replace(".", '').replace(".", '')
+                               onChange={e => setCnpj(e.target.value.replace(".", '').replace(".", '').replace("/", '')
                                    .replace('-', ''))} placeholder={"Digite o CNPJ"}/>
                     <Input type={"text"} onChange={e => setName(e.target.value)} placeholder={"Digite o Nome do Restaurante"}/>
                 </Container>
