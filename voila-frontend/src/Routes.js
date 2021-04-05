@@ -14,6 +14,9 @@ import CategoryRestaurant from './restaurant/pages/Category/list';
 import CategoryCreateRestaurant from './restaurant/pages/Category/new';
 import ExtraRestaurant from './restaurant/pages/Extra/list';
 import ExtraCreateRestaurant from './restaurant/pages/Extra/new';
+import DeliveryPerson from "./restaurant/pages/DeliveryPerson";
+import ItemNew from "./restaurant/pages/Item/new";
+import ItemList from "./restaurant/pages/Item/list";
 
 
 export default function Routes() {
@@ -35,9 +38,11 @@ export default function Routes() {
                 <Route path="/restaurant/category-new" component={CategoryCreateRestaurant}/>
                 <Route path="/restaurant/extra" component={ExtraRestaurant}/>
                 <Route path="/restaurant/extra-new" component={ExtraCreateRestaurant}/>
+                <Route path="/restaurant/item" component={ItemList}/>
+                <Route path="/restaurant/item-new" component={ItemNew}/>
                 <Route path="/restaurant/orders" component={Orders}/>
                 <Route path="/restaurant/finances" component={Finances}/>
-                <Route path="/restaurant/deliverypersons" component={Finances}/>
+                <Route path="/restaurant/deliverypersons" component={DeliveryPerson}/>
             </Switch>
         </BrowserRouter>
     )

@@ -1,5 +1,7 @@
 import React from 'react';
 import { MdAttachMoney, MdDirectionsBike, MdHome, MdRestaurantMenu } from "react-icons/md";
+import { BiFoodMenu } from "react-icons/bi";
+import { IoRestaurantOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { Menu, MenuItem, Span } from "./styles";
 
@@ -19,8 +21,12 @@ export default function MenuRestaurant() {
                 <Span><Link to="/restaurant/category">Categorias</Link></Span>
             </MenuItem>
             <MenuItem>
-                <MdRestaurantMenu color={"#ff5757"} size={18}/>
+                <IoRestaurantOutline color={"#ff5757"} size={18}/>
                 <Span><Link to="/restaurant/extra">Extra</Link></Span>
+            </MenuItem>
+            <MenuItem>
+                <BiFoodMenu color={"#ff5757"} size={18}/>
+                <Span><Link to="/restaurant/item">Item</Link></Span>
             </MenuItem>
             <MenuItem>
                 <MdAttachMoney color={"#ff5757"} size={18}/>
