@@ -41,4 +41,7 @@ public class PersonNatural {
     @JoinColumn(name = "person_id")
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Person person;
+
+    @OneToOne(mappedBy = "personNatural",cascade = CascadeType.ALL)
+    private Client client;
 }

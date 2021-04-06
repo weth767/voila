@@ -42,4 +42,7 @@ public class Person {
 
     @OneToOne(mappedBy = "person",cascade = CascadeType.ALL)
     private PersonLegal personLegal;
+
+    @OneToOne(mappedBy = "person",cascade = CascadeType.ALL)
+    private PersonNatural personNatural;
 }

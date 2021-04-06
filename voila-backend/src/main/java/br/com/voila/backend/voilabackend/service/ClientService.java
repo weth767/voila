@@ -79,6 +79,7 @@ public class ClientService {
         byte[] encodedhash = digest.digest(
                 accountDTO.getPassword().getBytes());
         account.setPassword(Arrays.toString(encodedhash));
+        accountDTO.setClientId(account.getPerson().getPersonNatural().getClient().getId());
         accountRepository.save(account);
     }
 }

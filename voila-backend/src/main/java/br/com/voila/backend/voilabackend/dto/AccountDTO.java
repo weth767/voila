@@ -10,4 +10,5 @@ public class AccountDTO {
     private String username;
     private String password;
     private Long restaurantId;
+    private Long clientId;
 }
