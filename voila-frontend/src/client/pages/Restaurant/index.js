@@ -12,7 +12,7 @@ import {
     Span,
     Title
 } from './styles';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from "axios";
 import { PATH } from "../../../utils/Consts";
 import LogoRestaurant from '../../../assets/restaurant.png';
@@ -23,7 +23,6 @@ import FoodLogo from '../../../assets/food.jpg';
 import Modal from 'react-modal';
 
 export default function Restaurant({ match }) {
-    const history = useHistory();
     const params = match.params;
     const [restaurant, setRestaurant] = useState();
     const [modalOpen,setModalOpen] = useState(false);

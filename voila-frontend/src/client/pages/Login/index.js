@@ -31,7 +31,7 @@ export default function Login() {
                     payload: {
                         userEmail: res.data.email,
                         username: res.data.username,
-                        username: res.data.clientId,
+                        clientId: res.data.clientId,
                     }
                 });
                 history.push('/client/home');
