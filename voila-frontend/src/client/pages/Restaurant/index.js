@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Container, Content, HeaderImage, InternalContent } from './styles';
+import { Redirect, useHistory } from 'react-router-dom';
 import {
     Button,
     Card,
@@ -18,6 +20,7 @@ import { PATH } from "../../../utils/Consts";
 import LogoRestaurant from '../../../assets/restaurant.png';
 import HeaderClient from "../../../components/HeaderClient";
 import FooterComponent from "../../../components/Footer";
+import { useSelector } from 'react-redux';
 import FoodLogo from '../../../assets/food.jpg';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from "react-redux";
@@ -71,6 +74,7 @@ export default function Restaurant({ match }) {
 
     return (
         <Container>
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/client/login"></Redirect> : null}
             <Modal
                 id="modalItem"
                 isOpen={modalOpen}
@@ -79,15 +83,15 @@ export default function Restaurant({ match }) {
                 style={{display: 'flex', flexDirection: 'column-reverse', justifyContent: 'center',
                     alignItems: 'center'}}
             >
-                 <ContainerModal>
-                     <img src={selectedItem ? 'data:image/png;base64,' + selectedItem.image: LogoRestaurant}
-                          alt={selectedItem ? selectedItem.description + 'image' : 'image'}/>
-                     <Title>Item: {selectedItem ? selectedItem.description : ''}</Title>
-                     <Span>Preço: R$ {selectedItem ? selectedItem.price : ''}</Span>
-                     <Input type={'number'} value={amount} placeholder={'Selecione a quantidade'}
-                            onChange={e => setAmount(e.target.value)} />
-                     <Button onClick = {() => saveItemOnOrder()}>Salvar item no pedido</Button>
-                 </ContainerModal>
+                <ContainerModal>
+                    <img src={selectedItem ? 'data:image/png;base64,' + selectedItem.image: LogoRestaurant}
+                         alt={selectedItem ? selectedItem.description + 'image' : 'image'}/>
+                    <Title>Item: {selectedItem ? selectedItem.description : ''}</Title>
+                    <Span>Preço: R$ {selectedItem ? selectedItem.price : ''}</Span>
+                    <Input type={'number'} value={amount} placeholder={'Selecione a quantidade'}
+                           onChange={e => setAmount(e.target.value)} />
+                    <Button onClick = {() => saveItemOnOrder()}>Salvar item no pedido</Button>
+                </ContainerModal>
             </Modal>
             <HeaderClient/>
             <Content>

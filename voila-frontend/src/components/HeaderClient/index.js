@@ -7,8 +7,12 @@ import { useHistory } from "react-router";
 import { Header, Options, Title, User, UserSpan } from "./styles";
 import Modal from 'react-modal';
 import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 export default function HeaderClient() {
+
+    const dispatch = useDispatch();
+
     const customStyles = {
         content : {
           top                   : '50%',
@@ -19,12 +23,14 @@ export default function HeaderClient() {
           transform             : 'translate(-50%, -50%)'
         }
     };
-
     const history = useHistory();
     const user = useSelector(state => state.user);
     const [showOrder,setShowOrder] = useState(false);
 
-    function logout() {
+    async function logout() {
+        await dispatch({
+            type: 'LOGOUT'
+        });
         history.push('/client/login');
     }
 

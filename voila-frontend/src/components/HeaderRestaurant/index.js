@@ -4,10 +4,17 @@ import UserImage from "../../assets/user.png";
 import { FiLogOut } from "react-icons/fi";
 import { useHistory } from "react-router";
 import { Header, Options, Title, User, UserSpan } from "./styles";
+import { useDispatch } from 'react-redux';
 
 export default function HeaderRestaurant() {
+
+    const dispatch = useDispatch();
     const history = useHistory();
-    function logout() {
+
+    async function logout() {
+        await dispatch({
+            type: 'LOGOUT'
+        });
         history.push('/restaurant/login');
     }
 

@@ -9,7 +9,7 @@ import HeaderClient from "../../../components/HeaderClient";
 export default function Orders() {
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/client/login"></Redirect> : null}
             <HeaderClient/>
             <Content>
                 <MenuClient/>
