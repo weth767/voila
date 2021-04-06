@@ -55,6 +55,9 @@ export default function Login() {
                     <Span><Link to="/client/register">Não tenho conta</Link></Span>
                     <Span><Link to="/client/recovery">Esqueci minha senha</Link></Span>
                 </ContainerFlex>
+                <ContainerFlex>
+                    <Span><Link to="/restaurant/login">Sou um restaurante</Link></Span>
+                </ContainerFlex>
             </Form>
             <NotificationContainer />
         </Container>

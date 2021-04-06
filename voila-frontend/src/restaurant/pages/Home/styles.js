@@ -22,7 +22,7 @@ export const OrderList = styled.ul`
   list-style: none;
   padding: 1vh 1vw;
   border: 1px solid var(--color-red);
-  width: 26.66vw;
+  width: 20vw;
   height: 84vh;
   overflow-y: scroll;
   ::-webkit-scrollbar {
@@ -32,9 +32,10 @@ export const OrderList = styled.ul`
 
 export const OrderTitle = styled.li`
   font-family: "Londrina Solid", sans-serif;
-  font-size: 2.3vw;
+  font-size: 1.5vw;
   color: var(--color-red);
   text-align: center;
+  margin-bottom: 1vh;
 `;
 
 export const OrderItem = styled.li`

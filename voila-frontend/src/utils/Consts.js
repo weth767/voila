@@ -8,23 +8,33 @@ export const USER_RESTAURANT = "RESTAURANT";
 export const STATUS_ORDERS = [
     {
         "id": "AT_WAITING_FOR",
-        "name": "Aguardando aprovação"
+        "name": "Aguardando aprovação",
+        "next": "IN_PROCESS"
     },
     {
         "id": "IN_PROCESS",
-        "name": "Em produção"
+        "name": "Em produção",
+        "next": "READY_TO_DELIVER"
     },
     {
         "id": "READY_TO_DELIVER",
         "name": "Pronto para entrega",
+        "next": "OUT_TO_DELIVER"
     },
     {
         "id": "OUT_TO_DELIVER",
         "name": "Saiu para entrega",
+        "next": "DELIVERED"
     },
     {
         "id": "DELIVERED",
         "name": "Entregue",
+        "next": null
+    },
+    {
+        "id": "CANCELED",
+        "name": "Cancelado",
+        "next": null
     },
 ];
 

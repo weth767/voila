@@ -95,8 +95,8 @@ export default function Finances() {
                             <FinanceListTitle>Entradas Dinheiro</FinanceListTitle>
                             {financesMoney.map((finance) => (
                                 <FinanceListItem key={finance.id}>
-                                    <span>{finance.dateTime}</span>
-                                    <span>{finance.totalValue}</span>
+                                    <span>{new Date(finance.dateTime).toLocaleDateString() + ' - ' + new Date(finance.dateTime).toLocaleTimeString()}</span>
+                                    <span>R$ {finance.totalValue}</span>
                                 </FinanceListItem>
                             ))}
                         </FinancesList>
@@ -104,8 +104,8 @@ export default function Finances() {
                             <FinanceListTitle>Entradas Cartão de Crédito</FinanceListTitle>
                             {financesCreditCard.map((finance) => (
                                 <FinanceListItem key={finance.id}>
-                                    <span>{finance.dateTime}</span>
-                                    <span>{finance.totalValue}</span>
+                                    <span>{new Date(finance.dateTime).toLocaleDateString() + ' - ' + new Date(finance.dateTime).toLocaleTimeString()}</span>
+                                    <span>R$ {finance.totalValue}</span>
                                 </FinanceListItem>
                             ))}
                         </FinancesList>
@@ -113,8 +113,8 @@ export default function Finances() {
                             <FinanceListTitle>Entradas Cartão de Debíto</FinanceListTitle>
                             {financesDebitCard.map((finance) => (
                                 <FinanceListItem key={finance.id}>
-                                    <span>{finance.dateTime}</span>
-                                    <span>{finance.totalValue}</span>
+                                    <span>{new Date(finance.dateTime).toLocaleDateString() + ' - ' + new Date(finance.dateTime).toLocaleTimeString()}</span>
+                                    <span>R$ {finance.totalValue}</span>
                                 </FinanceListItem>
                             ))}
                         </FinancesList>

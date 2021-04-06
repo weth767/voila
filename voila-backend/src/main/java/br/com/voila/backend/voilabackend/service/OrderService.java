@@ -1,6 +1,7 @@
 package br.com.voila.backend.voilabackend.service;
 
 import br.com.voila.backend.voilabackend.dto.OrderDTO;
+import br.com.voila.backend.voilabackend.dto.consult.OrderDataDTO;
 import br.com.voila.backend.voilabackend.enums.OrderStatusEnum;
 import br.com.voila.backend.voilabackend.exception.ParametrizedMessageException;
 import br.com.voila.backend.voilabackend.mapper.OrderMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,6 +38,11 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly=true)
+    public OrderDataDTO findDataById(Long orderid) {
+        return orderMapper.toDataDTO(orderRepository.getOne(orderid));
+    }
+
     public List<OrderDTO> findAllByStatus(OrderStatusEnum status) {
         return orderRepository.findAllByStatus(status)
                 .stream()
@@ -45,12 +52,20 @@ public class OrderService {
 
     @Transactional(readOnly=true)
     public OrderDTO findById(Long id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não econtrada"));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não encontrada"));
         return orderMapper.toDTO(order);
     }
 
     public void update(Long id, OrderStatusEnum orderStatusEnum) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não econtrado"));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não encontrado"));
+        if (order.getStatus().equals(OrderStatusEnum.DELIVERED)) {
+            return;
+        }
+        if (Objects.isNull(orderStatusEnum)) {
+            order.setStatus(OrderStatusEnum.DELIVERED);
+            orderRepository.save(order);
+            return;
+        }
         order.setStatus(orderStatusEnum);
         orderRepository.save(order);
     }

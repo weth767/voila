@@ -13,6 +13,8 @@ export default function HomeRestaurant() {
     const url = "https://images.vexels.com/media/users/3/143047/isolated/preview/b0c9678466af11dd45a62163bdcf03fe-iacute-cone-plano-de-hamb-uacute-rguer-de-fast-food-by-vexels.png";
     const [ordersWaiting, setOrdersWaiting] = useState([]);
     const [ordersPreparing, setOrdersPreparing] = useState([]);
+    const [ordersReadyDelivery, setOrdersReadyDelivery] = useState([]);
+    const [ordersOutDelivery, setOrdersOutDelivery] = useState([]);
     const [ordersDelivered, setOrdersDelivered] = useState([]);
     const history = useHistory();
     const user = useSelector(state => state.user);
@@ -26,6 +28,14 @@ export default function HomeRestaurant() {
             .then((result) => {
                 setOrdersPreparing(result.data);
             });
+        await axios.get(PATH + '/order/status/' + STATUS_ORDERS[2].id)
+            .then((result) => {
+                setOrdersReadyDelivery(result.data);
+            });
+        await axios.get(PATH + '/order/status/' + STATUS_ORDERS[3].id)
+            .then((result) => {
+                setOrdersOutDelivery(result.data);
+            });
         await axios.get(PATH + '/order/status/' + STATUS_ORDERS[4].id)
             .then((result) => {
                 setOrdersDelivered(result.data);
@@ -37,7 +47,7 @@ export default function HomeRestaurant() {
     }, []);
 
     function viewOrder(orderId) {
-        history.push()
+        history.push(`/restaurant/orderstatus/${orderId}`);
     }
 
     return (
@@ -50,7 +60,7 @@ export default function HomeRestaurant() {
                     <OrderList>
                         <OrderTitle>Pedidos em Espera</OrderTitle>
                         {ordersWaiting.map((order => (
-                            <OrderItem onClick={() => viewOrder(order.id)}>
+                            <OrderItem key={order.id} onClick={() => viewOrder(order.id)}>
                                 <img width={32} height={32} src={url} alt={''}/>
                                 <span>{order.id + " - " + new Date(order.dateTime).toLocaleDateString() + " "
                                 + new Date(order.dateTime).toLocaleTimeString()}</span>
@@ -61,18 +71,44 @@ export default function HomeRestaurant() {
                     <OrderList>
                         <OrderTitle>Pedidos em Produção</OrderTitle>
                         {ordersPreparing.map((order => (
-                            <OrderItem>
+                            <OrderItem key={order.id} onClick={() => viewOrder(order.id)}>
                                 <img width={32} height={32} src={url} alt={''}/>
-                                <span>{order.id + " - " + order.datetime}</span>
+                                <span>{order.id + " - " + new Date(order.dateTime).toLocaleDateString() + " "
+                                + new Date(order.dateTime).toLocaleTimeString()}</span>
+                                <span>R$ {order.totalValue}</span>
+                            </OrderItem>
+                        )))}
+                    </OrderList>
+                    <OrderList>
+                        <OrderTitle>Pedidos em Pronto para Entrega</OrderTitle>
+                        {ordersReadyDelivery.map((order => (
+                            <OrderItem key={order.id} onClick={() => viewOrder(order.id)}>
+                                <img width={32} height={32} src={url} alt={''}/>
+                                <span>{order.id + " - " + new Date(order.dateTime).toLocaleDateString() + " "
+                                + new Date(order.dateTime).toLocaleTimeString()}</span>
+                                <span>R$ {order.totalValue}</span>
+                            </OrderItem>
+                        )))}
+                    </OrderList>
+                    <OrderList>
+                        <OrderTitle>Pedidos em Saiu para Entrega</OrderTitle>
+                        {ordersOutDelivery.map((order => (
+                            <OrderItem key={order.id} onClick={() => viewOrder(order.id)}>
+                                <img width={32} height={32} src={url} alt={''}/>
+                                <span>{order.id + " - " + new Date(order.dateTime).toLocaleDateString() + " "
+                                + new Date(order.dateTime).toLocaleTimeString()}</span>
+                                <span>R$ {order.totalValue}</span>
                             </OrderItem>
                         )))}
                     </OrderList>
                     <OrderList>
                         <OrderTitle>Pedidos Entregues</OrderTitle>
                         {ordersDelivered.map((order => (
-                            <OrderItem>
+                            <OrderItem key={order.id} onClick={() => viewOrder(order.id)}>
                                 <img width={32} height={32} src={url} alt={''}/>
-                                <span>{order.id + " - " + order.datetime}</span>
+                                <span>{order.id + " - " + new Date(order.dateTime).toLocaleDateString() + " "
+                                + new Date(order.dateTime).toLocaleTimeString()}</span>
+                                <span>R$ {order.totalValue}</span>
                             </OrderItem>
                         )))}
                     </OrderList>
