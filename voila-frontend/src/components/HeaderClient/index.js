@@ -66,6 +66,10 @@ export default function HeaderClient() {
         if (!checkInput()) {
             return;
         }
+        let items = user.orderItems.map(orderItem => orderItem.item);
+        items.forEach(item => {
+            item.restaurantId = user.restaurantId
+        });
         axios.post(PATH + '/order', {
             dateTime: new Date(),
             totalValue: getTotalValue(),
@@ -79,7 +83,7 @@ export default function HeaderClient() {
             client: {
                 id: user.clientId
             },
-            items: user.orderItems.map(orderItem => orderItem.item),
+            items: items,
         }).then(() => {
             history.push('/client/home');
         });

@@ -15,10 +15,11 @@ export default function UserReducer(state = INITIAL_STATE, action){
             return {
                 ...state,
                 userLogged: true,
+                image: null,
                 userEmail: action.payload.userEmail,
                 username: action.payload.username,
                 restaurantId: action.payload.restaurantId,
-                clientId: action.payload.restaurantId,
+                clientId: action.payload.clientId,
                 orderItems: []
             };
         case 'LOGOUT':
@@ -28,10 +29,9 @@ export default function UserReducer(state = INITIAL_STATE, action){
                 userEmail: "",
                 username: "",
                 image: null,
-                status: "",
                 orderItems: [],
                 clientId: null,
-                restaurantId:null
+                restaurantId: null
             };
         case 'ORDER':
             return {
