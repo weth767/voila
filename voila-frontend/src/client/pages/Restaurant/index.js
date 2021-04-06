@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Content, HeaderImage, InternalContent } from './styles';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import axios from "axios";
 import { PATH } from "../../../utils/Consts";
 import LogoRestaurant from '../../../assets/restaurant.png';
 import { Showroom } from "../Orders/styles";
 import HeaderClient from "../../../components/HeaderClient";
 import FooterComponent from "../../../components/Footer";
+import { useSelector } from 'react-redux';
 
 export default function Restaurant({ match }) {
     const history = useHistory();
@@ -25,12 +26,9 @@ export default function Restaurant({ match }) {
         });
     }
 
-    // function viewItem(id) {
-    //
-    // }
-
     return (
         <Container>
+            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/client/login"></Redirect> : null}
             <HeaderClient/>
             <Content>
                 <InternalContent>

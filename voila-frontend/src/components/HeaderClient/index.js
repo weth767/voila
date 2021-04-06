@@ -6,8 +6,11 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { useHistory } from "react-router";
 import { Header, Options, Title, User, UserSpan } from "./styles";
 import Modal from 'react-modal';
+import { useDispatch } from 'react-redux';
 
 export default function HeaderClient() {
+
+    const dispatch = useDispatch();
 
     const customStyles = {
         content : {
@@ -23,7 +26,10 @@ export default function HeaderClient() {
 
     const [showOrder,setShowOrder] = React.useState(false);
 
-    function logout() {
+    async function logout() {
+        await dispatch({
+            type: 'LOGOUT'
+        });
         history.push('/client/login');
     }
 
