@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LogoImage from "../../assets/voila_logo2.png";
 import UserImage from "../../assets/user.png";
 import { FiLogOut } from "react-icons/fi";
@@ -9,7 +9,6 @@ import Modal from 'react-modal';
 import { useSelector } from "react-redux";
 
 export default function HeaderClient() {
-
     const customStyles = {
         content : {
           top                   : '50%',
@@ -20,9 +19,10 @@ export default function HeaderClient() {
           transform             : 'translate(-50%, -50%)'
         }
     };
+
     const history = useHistory();
     const user = useSelector(state => state.user);
-    const [showOrder,setShowOrder] = React.useState(false);
+    const [showOrder,setShowOrder] = useState(false);
 
     function logout() {
         history.push('/client/login');

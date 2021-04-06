@@ -10,8 +10,7 @@ import 'react-notifications/lib/notifications.css';
 import { useDispatch } from 'react-redux';
 
 export default function Login() {
-    const dispatch = useDispatch()
-
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
