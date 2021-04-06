@@ -93,6 +93,10 @@ export default function HeaderClient() {
         setShowOrder(false);
     }
 
+    function goToHome() {
+        history.push('/client/home');
+    }
+
     return (
         <>
             <Modal
@@ -151,7 +155,7 @@ export default function HeaderClient() {
             </Modal>
             <Header>
                 <img alt="Imagem de logo" src={LogoImage}/>
-                <Title>VOILÀ</Title>
+                <Title onClick={() => goToHome()}>VOILÀ</Title>
                 <User>
                     <img alt="Imagem de logo" src={UserImage}/>
                     <UserSpan>{user.username}</UserSpan>
