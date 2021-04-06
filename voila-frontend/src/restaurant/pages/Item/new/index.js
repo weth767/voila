@@ -5,7 +5,7 @@ import MenuRestaurant from "../../../../components/MenuRestaurant";
 import FooterComponent from "../../../../components/Footer";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import axios from "axios";
-import { MAX_SIZE_FILE, PATH } from "../../../../utils/Consts";
+import { MAX_SIZE_FILE, PATH, USER_RESTAURANT } from "../../../../utils/Consts";
 import { Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button, Form, Input, Select, TitleForm } from "../../Extra/new/styles";
@@ -120,7 +120,7 @@ export default function ItemNew() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

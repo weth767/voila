@@ -5,11 +5,15 @@ import { useSelector } from 'react-redux';
 import MenuClient from "../../../components/MenuClient";
 import FooterComponent from "../../../components/Footer";
 import HeaderClient from "../../../components/HeaderClient";
+import { USER_CLIENT } from '../../../utils/Consts';
 
 export default function Orders() {
+
+    const user = useSelector(state => state.user);
+
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/client/login"></Redirect> : null}
+            {user.userLogged === false || user.userType !== USER_CLIENT ? <Redirect to="/client/login"></Redirect> : null}
             <HeaderClient/>
             <Content>
                 <MenuClient/>

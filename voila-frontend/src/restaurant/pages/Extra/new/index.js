@@ -3,7 +3,7 @@ import { Button, Container, Content, Form, Input, Select, TitleForm } from './st
 import { Redirect, useHistory } from 'react-router-dom';
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
-import { MAX_SIZE_FILE, PATH } from '../../../../utils/Consts';
+import { MAX_SIZE_FILE, PATH, USER_RESTAURANT } from '../../../../utils/Consts';
 import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
 import InputCurrency from "../../../../components/InputCurrency";
@@ -18,6 +18,7 @@ export default function ExtraCreateRestaurant() {
     const [isActive, setIsActive] = useState();
     const [price, setPrice] = useState();
     const [picture, setPicture] = useState();
+    const user = useSelector(state => state.user);
 
     function checkInput() {
         if(description === "" || description == null){
@@ -83,7 +84,7 @@ export default function ExtraCreateRestaurant() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Content, OrderContent, OrderItem, OrderList, OrderTitle } from './styles';
 import axios from "axios";
-import { PATH, STATUS_ORDERS } from "../../../utils/Consts";
+import { PATH, STATUS_ORDERS, USER_RESTAURANT } from "../../../utils/Consts";
 import HeaderRestaurant from "../../../components/HeaderRestaurant";
 import MenuRestaurant from "../../../components/MenuRestaurant";
 import FooterComponent from "../../../components/Footer";
@@ -15,6 +15,7 @@ export default function HomeRestaurant() {
     const [ordersPreparing, setOrdersPreparing] = useState([]);
     const [ordersDelivered, setOrdersDelivered] = useState([]);
     const history = useHistory();
+    const user = useSelector(state => state.user);
 
     async function findOrders() {
         await axios.get(PATH + '/order/status/' + STATUS_ORDERS[0].id)
@@ -41,7 +42,7 @@ export default function HomeRestaurant() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

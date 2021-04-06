@@ -7,10 +7,13 @@ import FooterComponent from "../../../components/Footer";
 import { Redirect } from "react-router-dom";
 
 export default function OrderStatus({ match }) {
+
+    const user = useSelector(state => state.user);
     const params = match.params;
+    
     return(
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

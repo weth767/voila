@@ -10,7 +10,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
-import { PATH } from '../../../../utils/Consts';
+import { PATH, USER_RESTAURANT } from '../../../../utils/Consts';
 import { NotificationContainer, NotificationManager, } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
 import { useSelector } from 'react-redux';
@@ -22,6 +22,7 @@ export default function CategoryRestaurant() {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
+    const user = useSelector(state => state.user);
 
     const columns = [
         {
@@ -73,7 +74,7 @@ export default function CategoryRestaurant() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

@@ -4,7 +4,7 @@ import MenuRestaurant from "../../../../components/MenuRestaurant";
 import HeaderRestaurant from "../../../../components/HeaderRestaurant";
 import FooterComponent from "../../../../components/Footer";
 import axios from "axios";
-import { PATH } from "../../../../utils/Consts";
+import { PATH, USER_RESTAURANT } from "../../../../utils/Consts";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import { useHistory } from "react-router";
 import ReactTable from "react-table-v6";
@@ -15,6 +15,7 @@ export default function ItemList() {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
+    const user = useSelector(state => state.user);
 
     const columns = [
         {
@@ -74,7 +75,7 @@ export default function ItemList() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant class={'menu'}/>

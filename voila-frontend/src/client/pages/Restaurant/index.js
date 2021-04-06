@@ -14,7 +14,7 @@ import {
 } from './styles';
 import { Redirect } from 'react-router-dom';
 import axios from "axios";
-import { PATH } from "../../../utils/Consts";
+import { PATH, USER_CLIENT } from "../../../utils/Consts";
 import LogoRestaurant from '../../../assets/restaurant.png';
 import HeaderClient from "../../../components/HeaderClient";
 import FooterComponent from "../../../components/Footer";
@@ -74,7 +74,7 @@ export default function Restaurant({ match }) {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/client/login"></Redirect> : null}
+            {user.userLogged === false || user.userType !== USER_CLIENT ? <Redirect to="/client/login"></Redirect> : null}
             <Modal
                 id="modalItem"
                 isOpen={modalOpen}
