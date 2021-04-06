@@ -49,10 +49,10 @@ public class OrderService {
         return orderMapper.toDTO(order);
     }
 
-    public void update(Long id, Order orderUpdate) {
+    public void update(Long id, OrderStatusEnum orderStatusEnum) {
         Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não econtrado"));
-        orderUpdate.setId(order.getId());
-        orderMapper.toDTO(orderRepository.save(orderUpdate));
+        order.setStatus(orderStatusEnum);
+        orderRepository.save(order);
     }
 
     public OrderDTO save(Order order) {

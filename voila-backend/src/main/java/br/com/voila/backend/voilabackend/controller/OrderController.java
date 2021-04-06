@@ -31,9 +31,9 @@ public class OrderController {
                 .body(order);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
-        orderService.update(id,orderMapper.toEntity(orderDTO));
+    @PutMapping("/{id}/{status}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @PathVariable OrderStatusEnum status) {
+        orderService.update(id,status);
         return ResponseEntity.ok().build();
     }
 
