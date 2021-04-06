@@ -36,7 +36,7 @@ export default function HomeRestaurant() {
     }, []);
 
     function viewOrder(orderId) {
-        history.push()
+        history.push(`/restaurant/orderstatus/${orderId}`);
     }
 
     return (
@@ -49,7 +49,7 @@ export default function HomeRestaurant() {
                     <OrderList>
                         <OrderTitle>Pedidos em Espera</OrderTitle>
                         {ordersWaiting.map((order => (
-                            <OrderItem onClick={() => viewOrder(order.id)}>
+                            <OrderItem key={order.id} onClick={() => viewOrder(order.id)}>
                                 <img width={32} height={32} src={url} alt={''}/>
                                 <span>{order.id + " - " + new Date(order.dateTime).toLocaleDateString() + " "
                                 + new Date(order.dateTime).toLocaleTimeString()}</span>

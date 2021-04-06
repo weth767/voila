@@ -13,7 +13,7 @@ export const Content = styled.div`
   display: flex;
 `;
 
-export const OrderContent = styled.div`
+export const CenterContent = styled.div`
   display: flex;
   width: 80vw;
 `;

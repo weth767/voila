@@ -1,15 +1,23 @@
 package br.com.voila.backend.voilabackend.controller;
 
 import br.com.voila.backend.voilabackend.dto.OrderDTO;
+import br.com.voila.backend.voilabackend.dto.consult.OrderDataDTO;
 import br.com.voila.backend.voilabackend.enums.OrderStatusEnum;
-import br.com.voila.backend.voilabackend.enums.StateEnum;
 import br.com.voila.backend.voilabackend.mapper.OrderMapper;
 import br.com.voila.backend.voilabackend.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 import java.util.List;
@@ -56,6 +64,11 @@ public class OrderController {
     @GetMapping
     public ResponseEntity<List<OrderDTO>> findAll() {
         return ResponseEntity.ok(orderService.findAll());
+    }
+
+    @GetMapping("/data/{orderId}")
+    public ResponseEntity<OrderDataDTO> findDataById(@PathVariable Long orderId) {
+        return ResponseEntity.ok(orderService.findDataById(orderId));
     }
 
     @GetMapping("/{id}")

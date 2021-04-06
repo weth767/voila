@@ -17,6 +17,7 @@ import ExtraCreateRestaurant from './restaurant/pages/Extra/new';
 import DeliveryPerson from "./restaurant/pages/DeliveryPerson";
 import ItemNew from "./restaurant/pages/Item/new";
 import ItemList from "./restaurant/pages/Item/list";
+import OrderStatus from "./restaurant/pages/OrderStatus";
 
 
 export default function Routes() {
@@ -44,6 +45,7 @@ export default function Routes() {
                 <Route path="/restaurant/orders" component={Orders}/>
                 <Route path="/restaurant/finances" component={Finances}/>
                 <Route path="/restaurant/deliverypersons" component={DeliveryPerson}/>
+                <Route path="/restaurant/orderstatus/:orderId" component={OrderStatus}/>
             </Switch>
         </BrowserRouter>
     )

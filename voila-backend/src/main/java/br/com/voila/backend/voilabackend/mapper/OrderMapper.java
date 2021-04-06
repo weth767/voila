@@ -2,6 +2,7 @@ package br.com.voila.backend.voilabackend.mapper;
 
 import br.com.voila.backend.voilabackend.dto.FinanceDTO;
 import br.com.voila.backend.voilabackend.dto.OrderDTO;
+import br.com.voila.backend.voilabackend.dto.consult.OrderDataDTO;
 import br.com.voila.backend.voilabackend.model.Client;
 import br.com.voila.backend.voilabackend.model.Order;
 import br.com.voila.backend.voilabackend.model.Restaurant;
@@ -13,7 +14,7 @@ import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring", uses = {ItemMapper.class})
+@Mapper(componentModel = "spring", uses = {ClientMapper.class, ItemMapper.class})
 @Component
 public abstract class OrderMapper {
     @Autowired
@@ -25,6 +26,7 @@ public abstract class OrderMapper {
     @Mapping(source = "restaurant.id", target = "restaurant", qualifiedByName = "mapRestaurant")
     public abstract Order toEntity(OrderDTO clientDTO);
     public abstract OrderDTO toDTO(Order client);
+    public abstract OrderDataDTO toDataDTO(Order order);
     public abstract FinanceDTO toFinance(Order order);
 
     @Named("mapRestaurant")
