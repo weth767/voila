@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Container, Content, InternalContent, Showroom } from './styles';
 import { Redirect, useHistory } from 'react-router-dom';
 import axios from "axios";
-import { PATH } from "../../../utils/Consts";
+import { PATH, USER_CLIENT } from "../../../utils/Consts";
 import LogoRestaurant from '../../../assets/restaurant.png';
 import HeaderClient from "../../../components/HeaderClient";
 import MenuClient from "../../../components/MenuClient";
@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 export default function Home() {
     const history = useHistory();
     const [resturants, setRestaurants] = useState([]);
+    const user = useSelector(state => state.user);
 
     useEffect(() => {
         findResturants().then(() => {});
@@ -29,7 +30,7 @@ export default function Home() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/client/login"></Redirect> : null}
+            {user.userLogged === false || user.userType !== USER_CLIENT ? <Redirect to="/client/login"></Redirect> : null}
             <HeaderClient/>
             <Content>
                 <MenuClient/>

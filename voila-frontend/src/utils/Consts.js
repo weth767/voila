@@ -2,6 +2,9 @@ export const PATH = "http://localhost:9092";
 
 export const MAX_SIZE_FILE = 16000000;
 
+export const USER_CLIENT = "CLIENT";
+export const USER_RESTAURANT = "RESTAURANT";
+
 export const STATUS_ORDERS = [
     {
         "id": "AT_WAITING_FOR",

@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     image: null,
     restaurantId: null,
     clientId: null,
-    orderItems: []
+    orderItems: [],
+    userType:null
 }
 
 export default function UserReducer(state = INITIAL_STATE, action){
@@ -20,7 +21,8 @@ export default function UserReducer(state = INITIAL_STATE, action){
                 username: action.payload.username,
                 restaurantId: action.payload.restaurantId,
                 clientId: action.payload.clientId,
-                orderItems: []
+                orderItems: [],
+                userType:action.payload.userType
             };
         case 'LOGOUT':
             return {
@@ -31,7 +33,8 @@ export default function UserReducer(state = INITIAL_STATE, action){
                 image: null,
                 orderItems: [],
                 clientId: null,
-                restaurantId: null
+                restaurantId: null,
+                userType:null
             };
         case 'ORDER':
             return {

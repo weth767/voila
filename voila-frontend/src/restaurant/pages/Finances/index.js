@@ -15,7 +15,7 @@ import FooterComponent from "../../../components/Footer";
 import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
 import axios from "axios";
-import { PATH } from "../../../utils/Consts";
+import { PATH, USER_RESTAURANT } from "../../../utils/Consts";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -25,7 +25,8 @@ export default function Finances() {
     const [financesCreditCard, setFinancesCreditCard] = useState([]);
     const [financesDebitCard, setFinancesDebitCard] = useState([]);
     const [financesMoney, setFinancesMoney] = useState([]);
-
+    const user = useSelector(state => state.user);
+    
     useEffect(() => {
         findFinances().then(() => {});
     }, []);
@@ -58,7 +59,7 @@ export default function Finances() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

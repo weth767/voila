@@ -9,6 +9,8 @@ import axios from "axios";
 import { PATH } from "../../../utils/Consts";
 
 export default function OrderStatus({ match }) {
+
+    const user = useSelector(state => state.user);
     const params = match.params;
     const [orderData, setOrderData] = useState();
 
@@ -26,7 +28,7 @@ export default function OrderStatus({ match }) {
 
     return(
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"/> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>

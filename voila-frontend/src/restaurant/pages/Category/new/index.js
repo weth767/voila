@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Container, Content, Form, Input, Select, TitleForm } from './styles';
 import 'react-table-v6/react-table.css'
 import axios from 'axios';
-import { PATH } from '../../../../utils/Consts';
+import { PATH, USER_RESTAURANT } from '../../../../utils/Consts';
 import { NotificationContainer, NotificationManager, } from "react-notifications";
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import 'react-notifications/lib/notifications.css';
@@ -15,6 +15,7 @@ export default function CategoryCreateRestaurant() {
     const history = useHistory();
     const [name, setName] = useState();
     const [isActive, setIsActive] = useState();
+    const user = useSelector(state => state.user);
 
     function checkInput() {
         if(name === "" || name == null){
@@ -48,7 +49,7 @@ export default function CategoryCreateRestaurant() {
 
     return (
         <Container>
-            {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
+            {user.userLogged === false || user.userType !== USER_RESTAURANT ? <Redirect to="/restaurant/login"></Redirect> : null}
             <HeaderRestaurant/>
             <Content>
                 <MenuRestaurant/>
