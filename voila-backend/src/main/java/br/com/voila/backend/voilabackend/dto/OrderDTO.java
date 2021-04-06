@@ -8,13 +8,14 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
 public class OrderDTO {
     private Long id;
-    private LocalDate dateTime;
+    private LocalDateTime dateTime;
     private BigDecimal totalValue;
     private Boolean needExchange;
     private BigDecimal exchange;

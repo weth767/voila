@@ -7,12 +7,14 @@ import MenuRestaurant from "../../../components/MenuRestaurant";
 import FooterComponent from "../../../components/Footer";
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
+import { useHistory } from "react-router-dom";
 
 export default function HomeRestaurant() {
     const url = "https://images.vexels.com/media/users/3/143047/isolated/preview/b0c9678466af11dd45a62163bdcf03fe-iacute-cone-plano-de-hamb-uacute-rguer-de-fast-food-by-vexels.png";
     const [ordersWaiting, setOrdersWaiting] = useState([]);
     const [ordersPreparing, setOrdersPreparing] = useState([]);
     const [ordersDelivered, setOrdersDelivered] = useState([]);
+    const history = useHistory();
 
     async function findOrders() {
         await axios.get(PATH + '/order/status/' + STATUS_ORDERS[0].id)
@@ -33,6 +35,10 @@ export default function HomeRestaurant() {
         findOrders();
     }, []);
 
+    function viewOrder(orderId) {
+        history.push()
+    }
+
     return (
         <Container>
             {useSelector(state => state.user.userLogged) === false ? <Redirect to="/restaurant/login"></Redirect> : null}
@@ -43,9 +49,11 @@ export default function HomeRestaurant() {
                     <OrderList>
                         <OrderTitle>Pedidos em Espera</OrderTitle>
                         {ordersWaiting.map((order => (
-                            <OrderItem>
+                            <OrderItem onClick={() => viewOrder(order.id)}>
                                 <img width={32} height={32} src={url} alt={''}/>
-                                <span>{order.id + " - " + order.datetime}</span>
+                                <span>{order.id + " - " + new Date(order.dateTime).toLocaleDateString() + " "
+                                + new Date(order.dateTime).toLocaleTimeString()}</span>
+                                <span>R$ {order.totalValue}</span>
                             </OrderItem>
                         )))}
                     </OrderList>

@@ -56,6 +56,7 @@ public class OrderService {
     }
 
     public OrderDTO save(Order order) {
+        order.setStatus(OrderStatusEnum.AT_WAITING_FOR);
         return orderMapper.toDTO(orderRepository.save(order));
     }
 
