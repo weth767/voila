@@ -25,6 +25,21 @@ export const STATUS_ORDERS = [
     },
 ];
 
+export const PAYMENT_TYPES = [
+    {
+        "id": "MONEY",
+        "name": "Dinheiro"
+    },
+    {
+        "id": "CREDIT_CARD",
+        "name": "Cartão de Crédito"
+    },
+    {
+        "id": "DEBIT_CARD",
+        "name": "Cartão de Debíto"
+    },
+]
+
 export const STATES = [
     {
         "id": "ACRE",
