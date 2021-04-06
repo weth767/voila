@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {Banner, Button, Container, ContainerFlex, Form, Input, Logo, Span, Title} from './styles';
-import { PATH } from '../../../utils/Consts';
+import { PATH, USER_RESTAURANT } from '../../../utils/Consts';
 import axios from 'axios';
 import LogoImage from '../../../assets/voila_logo.png';
 import {Link, useHistory} from 'react-router-dom';
@@ -29,7 +29,8 @@ export default function LoginRestaurant() {
                 payload: {
                     userEmail: res.data.email,
                     username: res.data.username,
-                    restaurantId: res.data.restaurantId
+                    restaurantId: res.data.restaurantId,
+                    userType: USER_RESTAURANT
                 }
             });
             history.push('/restaurant/home');
