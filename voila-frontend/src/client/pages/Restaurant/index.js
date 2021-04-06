@@ -40,10 +40,6 @@ export default function Restaurant({ match }) {
     async function findResturant() {
         await dispatch({
             type: 'NEW_ORDER',
-            payload: {
-                orderItems: user.orderItems,
-                restaurantId: params.id
-            }
         });
         await axios.get(`${PATH}/restaurant/${params.id}`).then(result => {
             setRestaurant(result.data);
