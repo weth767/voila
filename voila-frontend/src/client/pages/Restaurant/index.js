@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Content, HeaderImage, InternalContent } from './styles';
-import { Redirect, useHistory } from 'react-router-dom';
 import {
     Button,
     Card,
@@ -14,16 +12,15 @@ import {
     Span,
     Title
 } from './styles';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import axios from "axios";
 import { PATH } from "../../../utils/Consts";
 import LogoRestaurant from '../../../assets/restaurant.png';
 import HeaderClient from "../../../components/HeaderClient";
 import FooterComponent from "../../../components/Footer";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FoodLogo from '../../../assets/food.jpg';
 import Modal from 'react-modal';
-import { useDispatch, useSelector } from "react-redux";
 
 export default function Restaurant({ match }) {
     const history = useHistory();
