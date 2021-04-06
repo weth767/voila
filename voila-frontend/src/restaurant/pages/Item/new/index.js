@@ -18,7 +18,6 @@ export default function ItemNew() {
     const [isActive, setIsActive] = useState();
     const [picture, setPicture] = useState();
     const [category, setCategory] = useState();
-    const [restaurant, setRestaurant] = useState();
     const [extras, setExtras] = useState([]);
     const user = useSelector(state => state.user);
 

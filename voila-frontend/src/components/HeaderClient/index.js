@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LogoImage from "../../assets/voila_logo2.png";
 import UserImage from "../../assets/user.png";
 import { FiLogOut } from "react-icons/fi";
@@ -6,6 +6,7 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { useHistory } from "react-router";
 import { Header, Options, Title, User, UserSpan } from "./styles";
 import Modal from 'react-modal';
+import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 
 export default function HeaderClient() {
@@ -23,8 +24,8 @@ export default function HeaderClient() {
         }
     };
     const history = useHistory();
-
-    const [showOrder,setShowOrder] = React.useState(false);
+    const user = useSelector(state => state.user);
+    const [showOrder,setShowOrder] = useState(false);
 
     async function logout() {
         await dispatch({
@@ -60,7 +61,7 @@ export default function HeaderClient() {
                 <Title>VOILÀ</Title>
                 <User>
                     <img alt="Imagem de logo" src={UserImage}/>
-                    <UserSpan>Usuario</UserSpan>
+                    <UserSpan>{user.username}</UserSpan>
                     <Options>
                         <MdAddShoppingCart size={32} color={'#fff'} onClick={() => openOrder()}/>
                         <FiLogOut size={32} color={'#fff'} onClick={() => logout()}/>
