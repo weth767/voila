@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,12 +52,20 @@ public class OrderService {
 
     @Transactional(readOnly=true)
     public OrderDTO findById(Long id) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não econtrada"));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não encontrada"));
         return orderMapper.toDTO(order);
     }
 
     public void update(Long id, OrderStatusEnum orderStatusEnum) {
-        Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não econtrado"));
+        Order order = orderRepository.findById(id).orElseThrow(() -> new ParametrizedMessageException("Pedido não encontrado"));
+        if (order.getStatus().equals(OrderStatusEnum.DELIVERED)) {
+            return;
+        }
+        if (Objects.isNull(orderStatusEnum)) {
+            order.setStatus(OrderStatusEnum.DELIVERED);
+            orderRepository.save(order);
+            return;
+        }
         order.setStatus(orderStatusEnum);
         orderRepository.save(order);
     }

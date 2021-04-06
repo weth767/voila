@@ -53,6 +53,9 @@ export default function LoginRestaurant() {
                     <Span><Link to="/restaurant/register">Não tenho conta</Link></Span>
                     <Span><Link to="/client/recovery">Esqueci minha senha</Link></Span>
                 </ContainerFlex>
+                <ContainerFlex>
+                    <Span><Link to="/client/login">Entrar como cliente</Link></Span>
+                </ContainerFlex>
             </Form>
             <NotificationContainer />
         </Container>

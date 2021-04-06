@@ -4,12 +4,12 @@ import UserImage from "../../assets/user.png";
 import { FiLogOut } from "react-icons/fi";
 import { useHistory } from "react-router";
 import { Header, Options, Title, User, UserSpan } from "./styles";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function HeaderRestaurant() {
-
     const dispatch = useDispatch();
     const history = useHistory();
+    const user = useSelector(state => state.user);
 
     async function logout() {
         await dispatch({
@@ -24,7 +24,7 @@ export default function HeaderRestaurant() {
             <Title>VOILÀ</Title>
             <User>
                 <img alt="Imagem de logo" src={UserImage}/>
-                <UserSpan>Usuario</UserSpan>
+                <UserSpan>{user.username}</UserSpan>
                 <Options>
                     <FiLogOut size={32} color={'#fff'} onClick={() => logout()}/>
                 </Options>
