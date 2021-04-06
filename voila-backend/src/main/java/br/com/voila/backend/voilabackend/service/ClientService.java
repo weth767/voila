@@ -64,6 +64,7 @@ public class ClientService {
                         AccountTypeEnum.CLIENT)
                 .orElseThrow(() -> new ParametrizedMessageException("Email ou senha incorretos"));
         AccountDTO accountDTO = accountMapper.toDTO(account);
+        accountDTO.setClientId(account.getPerson().getPersonNatural().getClient().getId());
         accountDTO.setPassword(null);
         return accountDTO;
     }
@@ -79,7 +80,6 @@ public class ClientService {
         byte[] encodedhash = digest.digest(
                 accountDTO.getPassword().getBytes());
         account.setPassword(Arrays.toString(encodedhash));
-        accountDTO.setClientId(account.getPerson().getPersonNatural().getClient().getId());
         accountRepository.save(account);
     }
 }
