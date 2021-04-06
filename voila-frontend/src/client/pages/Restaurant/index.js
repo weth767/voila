@@ -38,6 +38,13 @@ export default function Restaurant({ match }) {
     }, []);
 
     async function findResturant() {
+        await dispatch({
+            type: 'NEW_ORDER',
+            payload: {
+                orderItems: user.orderItems,
+                restaurantId: params.id
+            }
+        });
         await axios.get(`${PATH}/restaurant/${params.id}`).then(result => {
             setRestaurant(result.data);
         });
@@ -63,7 +70,8 @@ export default function Restaurant({ match }) {
         await dispatch({
             type: 'ORDER',
             payload: {
-                orderItems:  user.orderItems
+                orderItems: user.orderItems,
+                restaurantId: params.id
             }
         });
         closeOrder();
